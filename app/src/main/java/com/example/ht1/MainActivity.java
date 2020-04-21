@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity {
     //All arraylists are listed here
     ArrayList<Bank> bank = new ArrayList();
     ArrayList<Customer> customers = new ArrayList<>();
+    ArrayList<Debit_account> debit_accounts = new ArrayList<Debit_account>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
             bank.add(new Bank(4, "SBANFIHH", "S-Pankki", "Fleminginkatu 34, 00510 Helsinki", "010765800"));
 
             System.out.println("Adding customers");
-            System.out.println("Adding customers");
-            System.out.println("Adding customers");
 
             customers.add(new Customer("kissa", 566789, "OKOYFIHH", "170287-43667", "Anna Pukki", 33, "Katajakatu 9", "53810"));
             customers.add(new Customer("kala", 612009, "NDEAFIHH", "300196-1098", "Pete Peteläinen", 24, "Mannerheimintie 2", "23127"));
@@ -39,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
             System.out.println("Adding accounts");
             //TODO "Lisää asiakkaat ja kortit"
+            debit_accounts.add(new Debit_account("FI55 3131 1000 6789 31", 5789.66f, 566789, "12.12.2017", 5000f));
 
 
 
