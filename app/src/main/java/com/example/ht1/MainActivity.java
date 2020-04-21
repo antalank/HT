@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             bank.add(new Bank(4, "SBANFIHH", "S-Pankki", "Fleminginkatu 34, 00510 Helsinki", "010765800"));
 
             System.out.println("Adding customers");
+            System.out.println("Adding customers");
 
             customers.add(new Customer("kissa", 566789, "OKOYFIHH", "170287-43667", "Anna Pukki", 33, "Katajakatu 9", "53810"));
             customers.add(new Customer("kala", 612009, "NDEAFIHH", "300196-1098", "Pete Peteläinen", 24, "Mannerheimintie 2", "23127"));
