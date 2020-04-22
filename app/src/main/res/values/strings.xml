@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">HT1</string>
+    <string-array name="banks">
+        <Item>Osuuspankki</Item>
+        <Item>Nordea</Item>
+        <Item>Handelsbanken</Item>
+        <Item>Säästöpankki</Item>
+        <Item>S-Pankki</Item>
+    </string-array>
 </resources>
