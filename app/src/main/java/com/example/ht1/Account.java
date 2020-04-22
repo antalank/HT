@@ -72,7 +72,7 @@ public abstract class Account {
         String area;
         String card_num;
 
-        public Debit_card (String a, float b, int c, String d, float e, float f, float g, float h, String i, String j) {
+        public Debit_card (String a, float b, int c, String d, float e, float g, float h, String i, String j) {
             super(a,b,c,d,e);
             use_lim = g;
             draw_lim = h;

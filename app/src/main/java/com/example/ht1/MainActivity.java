@@ -9,7 +9,10 @@ public class MainActivity extends AppCompatActivity {
     //All arraylists are listed here
     ArrayList<Bank> bank = new ArrayList();
     ArrayList<Customer> customers = new ArrayList<>();
-    ArrayList<Debit_account> debit_accounts = new ArrayList<Debit_account>();
+    ArrayList<Debit_account> debit_accounts = new ArrayList<>();
+    ArrayList<Credit_account> credit_accounts = new ArrayList<>();
+    ArrayList<Debit_card> debit_cards = new ArrayList<>();
+    ArrayList<Credit_card> credit_cards = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +42,30 @@ public class MainActivity extends AppCompatActivity {
 
             System.out.println("Adding accounts");
             //TODO "Lisää asiakkaat ja kortit"
-            debit_accounts.add(new Debit_account("FI55 3131 1000 6789 31", 5789.66f, 566789, "12.12.2017", 5000f));
+            debit_accounts.add(new Debit_account("FI55 3131 1000 6789 41", 3894.55f, 566789, "31.12.2017", 6500f));
+            debit_accounts.add(new Debit_account("FI55 3131 1000 6789 42", 22.56f, 612009, "2.12.2020", 1200f));
+            debit_accounts.add(new Debit_account("FI55 3131 1000 6789 43", 1028.44f, 345123, "8.10.2019", 3000f));
+            debit_accounts.add(new Debit_account("FI55 3131 1000 6789 44", 9876.55f, 998477, "2.9.2018", 600f));
+            debit_accounts.add(new Debit_account("FI55 3131 1000 6789 45", 12098.55f, 535477, "9.11.2011", 9000f));
 
+            credit_accounts.add(new Credit_account("FI55 3131 1000 6789 31", 5789.66f, 566789, "12.12.2017", 5000f, 3000f));
+            credit_accounts.add(new Credit_account("FI55 3131 1000 6789 32", 2987.44f, 612009, "2.4.2020", 1000f, 1000f));
+            credit_accounts.add(new Credit_account("FI55 3131 1000 6789 33", 3006.22f, 345123, "5.10.2019", 2500f, 500f));
+            credit_accounts.add(new Credit_account("FI55 3131 1000 6789 34", 395.50f, 998477, "2.8.2018", 300f, 1250f));
+            credit_accounts.add(new Credit_account("FI55 3131 1000 6789 35", 11980.33f, 535477, "1.4.2015", 10000f, 4000f));
 
+            /// adding cards
+            debit_cards.add(new Debit_card("FI55 3131 1000 6789 41", 3894.55f, 566789, "31.12.2017", 6500f, 1200f, 500f, "FIN", "5153198799466732"));
+            debit_cards.add(new Debit_card("FI55 3131 1000 6789 42", 22.56f, 612009, "2.12.2020", 1200f, 1000f, 200f, "EU", "5153198799466733"));
+            debit_cards.add(new Debit_card("FI55 3131 1000 6789 43", 1028.44f, 345123, "8.10.2019", 3000f, 2000f, 1000f, "WORLD", "5153198799466734"));
+            debit_cards.add(new Debit_card("FI55 3131 1000 6789 44", 9876.55f, 998477, "2.9.2018", 600f, 5000f, 600f, "EU", "5153198799466735"));
+            debit_cards.add(new Debit_card("FI55 3131 1000 6789 45", 12098.55f, 535477, "9.11.2011", 9000f, 3400f, 500f, "EU", "5153198799466736"));
+
+            credit_cards.add(new Credit_card("FI55 3131 1000 6789 31", 5789.66f, 566789, "12.12.2017", 5000f, 3000f, 1200f, 500f, "FIN", "5153198799466792"));
+            credit_cards.add(new Credit_card("FI55 3131 1000 6789 32", 2987.44f, 612009, "2.4.2020", 1000f, 1000f, 1000f, 200f, "EU", "5153198799466793"));
+            credit_cards.add(new Credit_card("FI55 3131 1000 6789 33", 3006.22f, 345123, "5.10.2019", 2500f, 500f, 5000f, 600f, "EU", "5153198799466794"));
+            credit_cards.add(new Credit_card("FI55 3131 1000 6789 34", 395.50f, 998477, "2.8.2018", 300f, 1250f, 5000f, 600f, "EU", "5153198799466795"));
+            credit_cards.add(new Credit_card("FI55 3131 1000 6789 35", 11980.33f, 535477, "1.4.2015", 10000f, 4000f, 3400f, 500f, "EU", "5153198799466796"));
 
             System.out.println("Background prosess ends");
 
