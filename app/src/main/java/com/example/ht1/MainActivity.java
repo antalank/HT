@@ -1,8 +1,12 @@
 package com.example.ht1;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -71,5 +75,11 @@ public class MainActivity extends AppCompatActivity {
 
             return null;
         }
+    }
+
+    public void loadActivity1(View v){
+        Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+        startActivity(intent);
+
     }
 }
