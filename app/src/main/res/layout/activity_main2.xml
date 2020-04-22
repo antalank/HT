@@ -10,10 +10,35 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="153dp"
-        android:layout_marginTop="335dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="552dp"
         android:onClick="loadActivity2"
         android:text="Login"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/givePassword"
+        android:layout_width="197dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="Give password"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/giveUserName" />
+
+    <EditText
+        android:id="@+id/giveUserName"
+        android:layout_width="197dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="107dp"
+        android:layout_marginTop="370dp"
+        android:ems="10"
+        android:hint="Give username"
+        android:inputType="text|number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
