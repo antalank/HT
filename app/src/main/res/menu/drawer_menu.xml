@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_accounts"
+            android:icon="@drawable/ic_accounts"
+            android:title="Accounts" />
+        <item android:id="@+id/nav_payments"
+            android:icon="@drawable/ic_payments"
+            android:title="Payments" />
+        <item android:id="@+id/nav_cards"
+            android:icon="@drawable/ic_cards"
+            android:title="Cards" />
+        <item android:id="@+id/nav_bank_info"
+            android:icon="@drawable/ic_bank_info"
+            android:title="Bank Information" />
+        <item android:id="@+id/nav_user_info"
+            android:icon="@drawable/ic_bank_info"
+            android:title="Bank Information" />
+    </group>
+
+</menu>

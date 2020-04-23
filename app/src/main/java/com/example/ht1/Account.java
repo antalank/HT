@@ -1,6 +1,5 @@
 package com.example.ht1;
 
-
 public abstract class Account {
         String acc_num;
         float balance;
