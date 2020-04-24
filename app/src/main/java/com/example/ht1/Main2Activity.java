@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import static com.example.ht1.MainActivity.bankBicSelection;
 
+
 public class Main2Activity extends AppCompatActivity {
 
     EditText giveUser;

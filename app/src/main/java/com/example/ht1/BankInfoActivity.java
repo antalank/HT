@@ -21,8 +21,6 @@ public class BankInfoActivity extends AppCompatActivity {
 
     ArrayList<Bank> banks = new ArrayList<>();
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +33,9 @@ public class BankInfoActivity extends AppCompatActivity {
         int id = bankSelection;
         banks =  MainActivity.getInstance().getBanklist();
 
-        System.out.println("toimii1");
+        //System.out.println("toimii1");
 
-        System.out.println(banks.size());
+        //System.out.println(banks.size());
 
         for (Bank bank : banks) {
             if (id == bank.getId()) {

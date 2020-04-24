@@ -21,7 +21,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<Credit_card> credit_cards = new ArrayList<>();
     ArrayList<AccountEvent> account_event = new ArrayList<>();
 
+    public static MainActivity instance;
     public static int bankSelection;
+    public static String bankBicSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +35,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        instance = this;
 
         new LongRunningTask().execute();
+    }
+    public static MainActivity getInstance() {
+        return instance;
     }
     private class LongRunningTask extends AsyncTask<Void, Void, Void> {
         @Override
@@ -119,11 +125,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-
     public void loadActivity1(View v){
+        bankBicSelection = bank.get(bankSelection).getBIC();
         Intent intent = new Intent(MainActivity.this, Main2Activity.class);
         startActivity(intent);
-
+    }
+    public ArrayList<Bank> getBanklist() {
+        return bank;
     }
 }
