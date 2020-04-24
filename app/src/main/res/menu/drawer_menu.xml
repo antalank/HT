@@ -16,8 +16,8 @@
             android:icon="@drawable/ic_bank_info"
             android:title="Bank Information" />
         <item android:id="@+id/nav_user_info"
-            android:icon="@drawable/ic_bank_info"
-            android:title="Bank Information" />
+            android:icon="@drawable/ic_user_info"
+            android:title="My Profile" />
     </group>
 
 </menu>
