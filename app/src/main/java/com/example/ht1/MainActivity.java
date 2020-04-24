@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<AccountEvent> account_event = new ArrayList<>();
 
     public static int bankSelection;
+    public static String bankBicSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,9 +120,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
-
     public void loadActivity1(View v){
+        bankBicSelection = bank.get(bankSelection).getBIC();
         Intent intent = new Intent(MainActivity.this, Main2Activity.class);
         startActivity(intent);
 

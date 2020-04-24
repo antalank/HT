@@ -8,13 +8,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import java.util.ArrayList;
+
+import static com.example.ht1.MainActivity.bankBicSelection;
 
 public class Main2Activity extends AppCompatActivity {
 
     EditText giveUser;
     EditText givePass;
     Context context = null;
+    TextView text;
 
     ArrayList<Customer> customers = new ArrayList<>();
     public static int userIdSelection;
@@ -26,6 +31,8 @@ public class Main2Activity extends AppCompatActivity {
         giveUser = findViewById(R.id.giveUserName);
         givePass = findViewById(R.id.givePassword);
         context = Main2Activity.this;
+        text = (TextView) findViewById(R.id.textView_error);
+        text.setText("");
         new LongRunningTask().execute();
     }
     private class LongRunningTask extends AsyncTask<Void, Void, Void> {
@@ -43,29 +50,41 @@ public class Main2Activity extends AppCompatActivity {
             return null;
         }
     }
-    public void loadActivity2(View v){
+    public void loadActivity2(View v) {
         int apply = 0;
         int user;
         String password;
         String gU = giveUser.getText().toString();
-        int gUser = Integer.parseInt(gU);
-        String gPassword = givePass.getText().toString();
 
-        for (Customer cust : customers) {
-            System.out.println();
-            user = cust.user_id;
-            password = cust.password;
-            System.out.println(user + " " + password);
-            if (gUser == user && gPassword.equals(password)) {
+        String gPassword = givePass.getText().toString();
+        int lenght1 = 0;
+        int lenght2 = 0;
+        int bank;
+        lenght1 = gU.length();
+        lenght2 = gPassword.length();
+
+        if (lenght1 == 0 || lenght2 == 0) {
+            text.setText("Give your user id and password");
+        } else {
+            int gUser = Integer.parseInt(gU);
+            for (Customer cust : customers) {
+                System.out.println();
+                user = cust.user_id;
+                password = cust.password;
+
+                if (gUser == user && gPassword.equals(password) && bankBicSelection == cust.BIC) {
                     apply++;
                     userIdSelection = user;
+                }
             }
-        }
-        if (apply > 0) {
-            Intent intent = new Intent(Main2Activity.this, Main3Activity.class);
-            startActivity(intent);
-        } else {
+            if (apply > 0) {
+                Intent intent = new Intent(Main2Activity.this, Main3Activity.class);
+                startActivity(intent);
 
+            } else if (apply == 0) {
+                text.setText("Wrong user id or password!");
+            }
         }
     }
 }
+
