@@ -15,14 +15,13 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //All arraylists are listed here
     ArrayList<Bank> bank = new ArrayList();
-    ArrayList<Customer> customers = new ArrayList<>();
     ArrayList<Debit_account> debit_accounts = new ArrayList<>();
     ArrayList<Credit_account> credit_accounts = new ArrayList<>();
     ArrayList<Debit_card> debit_cards = new ArrayList<>();
     ArrayList<Credit_card> credit_cards = new ArrayList<>();
     ArrayList<AccountEvent> account_event = new ArrayList<>();
 
-    public static int bankSelection = 0;
+    public static int bankSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +46,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             bank.add(new Bank(2, "HANDFIHH", "Handelsbanken", "Itämerenkatu 11-13, 00180 Helsinki", "01044411"));
             bank.add(new Bank(3, "ITELFIHH", "Säästöpankki", "Teollisuuskatu 33, 00510 Helsinki", "0207032450"));
             bank.add(new Bank(4, "SBANFIHH", "S-Pankki", "Fleminginkatu 34, 00510 Helsinki", "010765800"));
-
-            System.out.println("Adding customers");
-            customers.add(new Customer("kissa", 566789, "OKOYFIHH", "170287-43667", "Anna Pukki", 33, "Katajakatu 9", "53810"));
-            customers.add(new Customer("kala", 612009, "NDEAFIHH", "300196-1098", "Pete Peteläinen", 24, "Mannerheimintie 2", "23127"));
-            customers.add(new Customer("hevonen", 345123, "HANDFIHH", "051201A3498", "Matti Meikäläinen", 18, "Liisankatu 7", "41412"));
-            customers.add(new Customer("koira", 998477, "ITELFIHH", "101066-1199", "Maija Mutteri", 58, "Skinnarilankatu 5", "21421"));
-            customers.add(new Customer("lintu", 535477, "SBANFIHH", "230391-6560", "Liisa Korhonen", 29, "Helsingintie 7", "02432"));
 
             System.out.println("Adding accounts");
             debit_accounts.add(new Debit_account("FI55 3131 1000 6789 41", 3894.55f, 566789, "31.12.2017", 6500f));
