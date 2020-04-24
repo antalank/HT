@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<AccountEvent> account_event = new ArrayList<>();
 
     public static int bankSelection;
+    private static MainActivity instance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +34,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        instance = this;
 
         new LongRunningTask().execute();
     }
+
+    public static MainActivity getInstance() {
+        return instance;
+    }
+
     private class LongRunningTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
@@ -120,10 +127,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-
     public void loadActivity1(View v){
         Intent intent = new Intent(MainActivity.this, Main2Activity.class);
         startActivity(intent);
 
+    }
+
+    public ArrayList<Bank> getBanklist() {
+        return bank;
     }
 }
