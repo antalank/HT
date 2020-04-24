@@ -1,6 +1,8 @@
 package com.example.ht1;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -123,6 +125,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+    public void loadActivity1(View v){
+        Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+        startActivity(intent);
 
     }
 }

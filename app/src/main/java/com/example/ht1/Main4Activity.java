@@ -7,6 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -14,11 +16,13 @@ import com.google.android.material.navigation.NavigationView;
 
 public class Main4Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
+    Context context = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
+        context = Main4Activity.this;
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -42,23 +46,30 @@ public class Main4Activity extends AppCompatActivity implements NavigationView.O
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_accounts:
-                getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, new AccountFragment()).commit();
+                Intent intentAccount = new Intent(Main4Activity.this, AccountActivity.class);
+                startActivity(intentAccount);
                 break;
             case R.id.nav_payments:
-                getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, new PaymentFragment()).commit();
+                Intent intentPayment = new Intent(Main4Activity.this, PaymentActivity.class);
+                startActivity(intentPayment);
                 break;
             case R.id.nav_cards:
-                getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, new CardFragment()).commit();
+                Intent intentCard = new Intent(Main4Activity.this, CardActivity.class);
+                startActivity(intentCard);
                 break;
             case R.id.nav_bank_info:
-                getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, new BankInfoFragment()).commit();
+                Intent intentBankInfo = new Intent(Main4Activity.this, BankInfoActivity.class);
+                startActivity(intentBankInfo);
                 break;
             case R.id.nav_user_info:
-                getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container, new UserInfoFragment()).commit();
+                Intent intentUserInfo = new Intent(Main4Activity.this, UserInfoActivity.class);
+                startActivity(intentUserInfo);
                 break;
 
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
