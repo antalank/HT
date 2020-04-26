@@ -132,16 +132,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Intent intent = new Intent(MainActivity.this, Main2Activity.class);
         startActivity(intent);
     }
-    public ArrayList<Bank> getBanklist() {
-        return bank;
-    }
-
-    public ArrayList<Credit_card> getCreditCards() {
-        return credit_cards;
-    }
-
-    public ArrayList<Debit_card> getDebitCards() {
-        return debit_cards;
-    }
+    public ArrayList<Bank> getBanklist() { return bank; }
+    public ArrayList<AccountEvent> getAccountEventlist() { return account_event; }
+    public ArrayList<Debit_account> getDebitaccountlist() { return debit_accounts; }
+    public ArrayList<Credit_account> getCreditaccountlist() { return credit_accounts; }
+    public ArrayList<Credit_card> getCreditCards() { return credit_cards; }
+    public ArrayList<Debit_card> getDebitCards() { return debit_cards; }
 
 }

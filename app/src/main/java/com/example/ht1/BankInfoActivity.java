@@ -24,7 +24,7 @@ public class BankInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank_info);
 
-        nameText = findViewById(R.id.textView1);
+        nameText = findViewById(R.id.textViewOtsikko);
         addressText = findViewById(R.id.textView2);
         numberText = findViewById(R.id.textView3);
 
@@ -37,7 +37,6 @@ public class BankInfoActivity extends AppCompatActivity {
                 address = bank.getAddress();
                 number = bank.getPhone();
             }
-
         }
         nameText.setText("Name: " + name);
         addressText.setText("Address: " + address);

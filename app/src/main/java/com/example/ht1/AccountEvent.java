@@ -18,7 +18,7 @@ public class AccountEvent {
     }
 
     public int getId() { return id; }
-    public String getAccount_num() { return from_account_num; }
+    public String getAccount_num() { return account_num; }
     public String getDay() { return day; }
     public float getSum() { return sum; }
     public String getFrom_account_num() { return from_account_num; }

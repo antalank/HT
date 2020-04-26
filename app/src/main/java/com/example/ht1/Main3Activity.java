@@ -18,7 +18,7 @@ public class Main3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-        textView1 = findViewById(R.id.textView1);
+        textView1 = findViewById(R.id.textViewOtsikko);
         textView5 = findViewById(R.id.textView5);
         textView5.setText("Import keycode list number");
         textViewError = findViewById(R.id.textViewError);
