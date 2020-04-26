@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public static MainActivity instance;
     public static int bankSelection;
     public static String bankBicSelection;
+    public static String bankNameSelection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
     public void loadActivity1(View v){
         bankBicSelection = bank.get(bankSelection).getBIC();
+        bankNameSelection = bank.get(bankSelection).getName();
         Intent intent = new Intent(MainActivity.this, Main2Activity.class);
         startActivity(intent);
     }

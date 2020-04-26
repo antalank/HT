@@ -11,20 +11,25 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 import com.google.android.material.navigation.NavigationView;
 
+import static com.example.ht1.MainActivity.bankNameSelection;
+
 public class Main4Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawer;
     Context context = null;
+    TextView textView4BankName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
         context = Main4Activity.this;
-
+        textView4BankName = findViewById(R.id.textView4BankName);
+        textView4BankName.setText("Welcome to " + bankNameSelection + "!");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
