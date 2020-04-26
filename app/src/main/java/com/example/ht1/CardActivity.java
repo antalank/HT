@@ -3,6 +3,7 @@ package com.example.ht1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -120,6 +121,11 @@ public class CardActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void addCard(View v){
+        Intent intent = new Intent(CardActivity.this, AddCardActivity.class);
+        startActivity(intent);
     }
 }
 
