@@ -2,10 +2,8 @@ package com.example.ht1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 
 import static com.example.ht1.MainActivity.bankSelection;
@@ -32,10 +30,6 @@ public class BankInfoActivity extends AppCompatActivity {
 
         int id = bankSelection;
         banks =  MainActivity.getInstance().getBanklist();
-
-        //System.out.println("toimii1");
-
-        //System.out.println(banks.size());
 
         for (Bank bank : banks) {
             if (id == bank.getId()) {

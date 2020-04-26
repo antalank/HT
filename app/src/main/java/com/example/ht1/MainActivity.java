@@ -135,4 +135,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public ArrayList<Bank> getBanklist() {
         return bank;
     }
+
+    public ArrayList<Credit_card> getCreditCards() {
+        return credit_cards;
+    }
+
+    public ArrayList<Debit_card> getDebitCards() {
+        return debit_cards;
+    }
+
 }
