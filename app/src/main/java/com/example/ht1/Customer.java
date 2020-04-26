@@ -6,11 +6,11 @@ public class Customer {
     String BIC;
     String SSN;
     String name;
-    int telephone;
+    String telephone;
     String address;
     String postal_code;
 
-    public Customer(String password, int user_id, String BIC, String SSN, String name, int telephone, String address, String postal_code) {
+    public Customer(String password, int user_id, String BIC, String SSN, String name, String telephone, String address, String postal_code) {
         this.password = password;
         this.user_id = user_id;
         this.BIC = BIC;
@@ -24,6 +24,9 @@ public class Customer {
     public String getPassword() {
         return password;
     }
+    public int getUserId() {
+        return user_id;
+    }
     public String getBIC() {
         return BIC;
     }
@@ -33,7 +36,7 @@ public class Customer {
     public String getName() {
         return name;
     }
-    public int getAge() {
+    public String getNumber() {
         return telephone;
     }
     public String getAddress() {

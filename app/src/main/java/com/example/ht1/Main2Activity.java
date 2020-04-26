@@ -24,6 +24,7 @@ public class Main2Activity extends AppCompatActivity {
 
     ArrayList<Customer> customers = new ArrayList<>();
     public static int userIdSelection;
+    public static Main2Activity instance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,22 +36,34 @@ public class Main2Activity extends AppCompatActivity {
         text = (TextView) findViewById(R.id.textView_error);
         text.setText("");
         new LongRunningTask().execute();
+        instance = this;
     }
+
+    public static Main2Activity getInstance() {
+        return instance;
+    }
+
     private class LongRunningTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
             System.out.println("Background prosess starts");
             System.out.println("Adding customers");
-            customers.add(new Customer("kissa", 566789, "OKOYFIHH", "170287-43667", "Anna Pukki", 043422332, "Katajakatu 9", "53810"));
-            customers.add(new Customer("kala", 612009, "NDEAFIHH", "300196-1098", "Pete Peteläinen", 04342232, "Mannerheimintie 2", "23127"));
-            customers.add(new Customer("hevonen", 345123, "HANDFIHH", "051201A3498", "Matti Meikäläinen", 043423213, "Liisankatu 7", "41412"));
-            customers.add(new Customer("koira", 998477, "ITELFIHH", "101066-1199", "Maija Mutteri", 04342325324, "Skinnarilankatu 5", "21421"));
-            customers.add(new Customer("lintu", 535477, "SBANFIHH", "230391-6560", "Liisa Korhonen", 901923124, "Helsingintie 7", "02432"));
+            customers.add(new Customer("kissa", 566789, "OKOYFIHH", "170287-43667", "Anna Pukki", "043422332", "Katajakatu 9", "53810"));
+            customers.add(new Customer("kala", 612009, "NDEAFIHH", "300196-1098", "Pete Peteläinen", "04342232", "Mannerheimintie 2", "23127"));
+            customers.add(new Customer("hevonen", 345123, "HANDFIHH", "051201A3498", "Matti Meikäläinen", "043423213", "Liisankatu 7", "41412"));
+            customers.add(new Customer("koira", 998477, "ITELFIHH", "101066-1199", "Maija Mutteri", "04342325324", "Skinnarilankatu 5", "21421"));
+            customers.add(new Customer("lintu", 535477, "SBANFIHH", "230391-6560", "Liisa Korhonen", "901923124", "Helsingintie 7", "02432"));
             System.out.println("Background prosess ends");
 
             return null;
         }
     }
+
+    public ArrayList<Customer> getCustomerlist() {
+        return customers;
+    }
+
+
     public void loadActivity2(View v) {
         int apply = 0;
         int user;
