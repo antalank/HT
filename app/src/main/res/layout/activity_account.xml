@@ -59,4 +59,25 @@
         android:onClick="showData"
         android:text="Show events" />
 
+    <Button
+        android:id="@+id/buttonWrite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="135dp"
+        android:layout_marginBottom="64dp"
+        android:onClick="writeDatatoFile"
+        android:text="Write events to file" />
+
+    <TextView
+        android:id="@+id/textViewWrite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="151dp"
+        android:layout_marginBottom="24dp"
+        android:text="TextView" />
+
 </RelativeLayout>
