@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import static com.example.ht1.Main2Activity.userIdSelection;
 
-public class UserInfoActivity extends AppCompatActivity {
+public class UserInfoActivity extends BaseActivity {
 
     TextView nameText;
     TextView addressText;

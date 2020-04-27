@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 import static com.example.ht1.Main2Activity.userIdSelection;
 
-public class CardActivity extends AppCompatActivity {
+public class CardActivity extends BaseActivity {
 
     Spinner spinner;
     Button check_switch;

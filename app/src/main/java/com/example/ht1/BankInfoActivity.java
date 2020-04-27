@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import static com.example.ht1.MainActivity.bankSelection;
 
-public class BankInfoActivity extends AppCompatActivity {
+public class BankInfoActivity extends BaseActivity {
 
     TextView nameText;
     TextView addressText;
