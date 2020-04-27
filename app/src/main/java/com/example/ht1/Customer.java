@@ -45,9 +45,11 @@ public class Customer {
     public String getPostalCode() {
         return postal_code;
     }
-    public void setPassword(String s) {
-        password = s;
-    }
+    public void setPassword(String s) { password = s; }
+    public void setName(String s) { name = s; }
+    public void setAddress(String s) { address = s; }
+    public void setNumber(String s) { telephone = s; }
+    public void setPostalCode(String s) { postal_code = s; }
 
 }
 

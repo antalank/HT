@@ -83,8 +83,15 @@ public class UserInfoActivity extends AppCompatActivity {
 
     public void saveName(View v){
         String s;
+        int id = userIdSelection;
+        customers =  Main2Activity.getInstance().getCustomerlist();
         s = newName.getText().toString();
         nameText.setText("Name: " + s);
+        for (Customer c : customers) {
+            if (id == c.getUserId()) {
+                c.setName(s);
+            }
+        }
 
         EditText editText1 = findViewById(R.id.editName);
         editText1.setFocusableInTouchMode(false);
@@ -96,16 +103,24 @@ public class UserInfoActivity extends AppCompatActivity {
         newName.setText(null);
     }
     public void saveAddress(View v){
+        int id = userIdSelection;
+        customers =  Main2Activity.getInstance().getCustomerlist();
         currentString = newAddress.getText().toString();
         String[] separated = currentString.split(",");
         String r = separated[0];
         String t = separated[1];
         addressText.setText("Address: " + r + " " + t);
+        for (Customer c : customers) {
+            if (id == c.getUserId()) {
+                c.setPostalCode(r);
+                c.setAddress(t);
+            }
+        }
 
-        EditText editText2 = findViewById(R.id.editName);
+        EditText editText2 = findViewById(R.id.editAddress);
         editText2.setFocusableInTouchMode(false);
         editText2.setVisibility(View.INVISIBLE);
-        Button button2 = findViewById(R.id.save1);
+        Button button2 = findViewById(R.id.save2);
         button2.setFocusable(false);
         button2.setVisibility(View.INVISIBLE);
 
@@ -113,13 +128,20 @@ public class UserInfoActivity extends AppCompatActivity {
     }
     public void saveNumber(View v){
         String s;
+        int id = userIdSelection;
+        customers =  Main2Activity.getInstance().getCustomerlist();
         s = newNumber.getText().toString();
         numberText.setText("Phone number: " + s);
+        for (Customer c : customers) {
+            if (id == c.getUserId()) {
+                c.setNumber(s);
+            }
+        }
 
-        EditText editText3 = findViewById(R.id.editName);
+        EditText editText3 = findViewById(R.id.editNumber);
         editText3.setFocusableInTouchMode(false);
         editText3.setVisibility(View.INVISIBLE);
-        Button button3 = findViewById(R.id.save1);
+        Button button3 = findViewById(R.id.save3);
         button3.setFocusable(false);
         button3.setVisibility(View.INVISIBLE);
 
