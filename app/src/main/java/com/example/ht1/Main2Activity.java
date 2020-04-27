@@ -63,6 +63,11 @@ public class Main2Activity extends AppCompatActivity {
         return customers;
     }
 
+    public void startDB (View v) {
+        new DBHelper (this);
+        startActivity(new Intent(this, Customer.class));
+    }
+
 
     public void loadActivity2(View v) {
         int apply = 0;
