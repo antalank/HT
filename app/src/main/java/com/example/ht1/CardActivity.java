@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 
@@ -17,6 +18,9 @@ import java.util.ArrayList;
 import static com.example.ht1.Main2Activity.userIdSelection;
 
 public class CardActivity extends BaseActivity {
+
+    public static String cardTypeSelection;
+    public static String accountNumSelection;
 
     Spinner spinner;
     Button check_switch;
@@ -76,11 +80,16 @@ public class CardActivity extends BaseActivity {
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
 
+                    cardTypeSelection = "Credit";
+
                 } else {
                     // listing debit cards in spinner
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, debit_cards_list);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
+
+                    cardTypeSelection = "Debit";
+
                 }
             }
         });
@@ -129,8 +138,14 @@ public class CardActivity extends BaseActivity {
         });
     }
 
+
     public void addCard(View v){
         Intent intent = new Intent(CardActivity.this, AddCardActivity.class);
+        startActivity(intent);
+    }
+
+    public void changeSettings(View v){
+        Intent intent = new Intent(CardActivity.this, CardSettingsActivity.class);
         startActivity(intent);
     }
 }

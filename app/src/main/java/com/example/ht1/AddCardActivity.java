@@ -3,6 +3,7 @@ package com.example.ht1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -72,6 +73,8 @@ public class AddCardActivity extends AppCompatActivity {
                 credit_account_list.add(acc_num);
             }
         }
+        credit_cards = MainActivity.getInstance().getCreditCards();
+        debit_cards = MainActivity.getInstance().getDebitCards();
 
         //////Using switch to choose debit or credit card///////////////////////////////////////////////////////////////
 
@@ -115,8 +118,6 @@ public class AddCardActivity extends AppCompatActivity {
         area_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         area_spinner.setAdapter(area_adapter);
 
-        final String area = area_spinner.getSelectedItem().toString();
-
         ////////////////////////////////////////////////////////////////////////////////////////////////
 
         ///////// Creating the new card ///////////////////////////////////////////////////////////////////////////////////////
@@ -126,26 +127,48 @@ public class AddCardActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String S_use_limit = use.getText().toString();
                 float use_limit = Float.parseFloat(S_use_limit);
-
                 String S_draw_limit = draw.getText().toString();
                 float draw_limit = Float.parseFloat(S_draw_limit);
 
+                String area = area_spinner.getSelectedItem().toString();
                 if (area.equals("Select area")) {
                     System.out.println("The header of spinner");
                     // TODO joku ilmoitus että valitse area ensin? vaiko turha
                 } else {
-                    // TODO koodi tähän:
                     Switch sw;
                     sw = (Switch) findViewById(R.id.switch2);
                     if (sw.isChecked()) {    //is credit card
-                        //TODO for loop for adding the info of the chosen account to card-list
+                        for (int i = 0; i < credit_accounts.size(); i++) {
+                            if (userId == credit_accounts.get(i).getUserID()) {
+                                credit_cards.add(new Credit_card(credit_accounts.get(i).getAccountNumber(), credit_accounts.get(i).getBalance(), credit_accounts.get(i).getUserID(),
+                                        credit_accounts.get(i).getOpenDate(), credit_accounts.get(i).getPayLim(), credit_accounts.get(i).getCredit(),
+                                        use_limit, draw_limit, area, card_num));
+                                System.out.println("Lisäsi kortin");
+                            }
+                        }
                     } else {    //is debit card
+                        for (int i = 0; i < debit_accounts.size(); i++) {
+                            if (userId == debit_accounts.get(i).getUserID()) {
+                                debit_cards.add(new Debit_card(credit_accounts.get(i).getAccountNumber(), credit_accounts.get(i).getBalance(), credit_accounts.get(i).getUserID(),
+                                        credit_accounts.get(i).getOpenDate(), credit_accounts.get(i).getPayLim(),
+                                        use_limit, draw_limit, area, card_num));
+                            }
+                        }
                     }
                 }
 
     }
 
     });
+    }
+
+    //this makes the CardActivity refresh when pressing back button
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        Intent intentCardActivity = new Intent(AddCardActivity.this, CardActivity.class);
+        startActivity(intentCardActivity);
     }
 }
 

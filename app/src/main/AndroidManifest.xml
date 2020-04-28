@@ -9,18 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BaseActivity"/>
+        <activity android:name=".CardSettingsActivity"/>
+        <activity android:name=".BaseActivity" />
         <activity android:name=".AddCardActivity" />
-        <activity android:name=".UserInfoActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".BankInfoActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".CardActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".PaymentActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".AccountActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".UserInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BankInfoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CardActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PaymentActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AccountActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Main4Activity"
             android:theme="@style/AppTheme.NoActionBar" />

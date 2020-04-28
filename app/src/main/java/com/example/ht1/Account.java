@@ -59,8 +59,12 @@ public abstract class Account {
         }
         //methods of class Credit account->
 
-        public float getCredit(float cr) {
+        public float getCredit() {
             return credit;
+        }
+
+        public void setCredit(float cr) {
+            credit = cr;
         }
     }
 
