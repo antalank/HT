@@ -1,7 +1,5 @@
 package com.example.ht1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,8 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 import static com.example.ht1.Main2Activity.userIdSelection;
 
@@ -22,13 +18,9 @@ public class UserInfoActivity extends BaseActivity {
     EditText newName;
     EditText newAddress;
     EditText newNumber;
-    String name;
-    String address;
-    String number;
-    String postal_code;
     String currentString;
 
-    ArrayList<Customer> customers = new ArrayList<>();
+   // ArrayList<Customer> customers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +38,9 @@ public class UserInfoActivity extends BaseActivity {
         newAddress = findViewById(R.id.editAddress);
         newNumber = findViewById(R.id.editNumber);
 
-        int id = userIdSelection;
-        customers =  Main2Activity.getInstance().getCustomerlist();
+        //customers =  Main2Activity.getInstance().getCustomerlist();
 
-        for (Customer customer : customers) {
+        /*for (Customer customer : customers) {
             if (id == customer.getUserId()) {
                 name = customer.getName();
                 address = customer.getAddress();
@@ -60,7 +51,22 @@ public class UserInfoActivity extends BaseActivity {
 
         nameText.setText("Name: " + name);
         addressText.setText("Address: " + postal_code + " " + address);
+        numberText.setText("Phone number: " + number);*/
+
+        DB_Customer dbAccess = DB_Customer.getInstance(getApplicationContext());
+        dbAccess.open();
+
+        int id = userIdSelection;
+        String name = dbAccess.getName(id);
+        String address = dbAccess.getAddress(id);
+        String postal_code = dbAccess.getPostalCode(id);
+        String number = dbAccess.getNumber(id);
+
+        nameText.setText("Name: " + name);
+        addressText.setText("Address: " + postal_code + " " + address);
         numberText.setText("Phone number: " + number);
+
+        dbAccess.close();
     }
 
     public void setEnabledName(View v){
@@ -91,14 +97,13 @@ public class UserInfoActivity extends BaseActivity {
     public void saveName(View v){
         String s;
         int id = userIdSelection;
-        customers =  Main2Activity.getInstance().getCustomerlist();
+        //customers =  Main2Activity.getInstance().getCustomerlist();
         s = newName.getText().toString();
         nameText.setText("Name: " + s);
-        for (Customer c : customers) {
-            if (id == c.getUserId()) {
-                c.setName(s);
-            }
-        }
+
+        DB_Customer dbAccess = DB_Customer.getInstance(getApplicationContext());
+        dbAccess.open();
+        dbAccess.setName(id, s);
 
         EditText editText1 = findViewById(R.id.editName);
         editText1.setFocusableInTouchMode(false);
@@ -111,18 +116,23 @@ public class UserInfoActivity extends BaseActivity {
     }
     public void saveAddress(View v){
         int id = userIdSelection;
-        customers =  Main2Activity.getInstance().getCustomerlist();
+        //customers =  Main2Activity.getInstance().getCustomerlist();
         currentString = newAddress.getText().toString();
         String[] separated = currentString.split(",");
         String r = separated[0];
         String t = separated[1];
         addressText.setText("Address: " + r + " " + t);
-        for (Customer c : customers) {
+        /*for (Customer c : customers) {
             if (id == c.getUserId()) {
                 c.setPostalCode(r);
                 c.setAddress(t);
             }
-        }
+        }*/
+
+        DB_Customer dbAccess = DB_Customer.getInstance(getApplicationContext());
+        dbAccess.open();
+        dbAccess.setPostalCode(id, r);
+        dbAccess.setAddress(id, t);
 
         EditText editText2 = findViewById(R.id.editAddress);
         editText2.setFocusableInTouchMode(false);
@@ -136,14 +146,13 @@ public class UserInfoActivity extends BaseActivity {
     public void saveNumber(View v){
         String s;
         int id = userIdSelection;
-        customers =  Main2Activity.getInstance().getCustomerlist();
+        //customers =  Main2Activity.getInstance().getCustomerlist();
         s = newNumber.getText().toString();
         numberText.setText("Phone number: " + s);
-        for (Customer c : customers) {
-            if (id == c.getUserId()) {
-                c.setNumber(s);
-            }
-        }
+
+        DB_Customer dbAccess = DB_Customer.getInstance(getApplicationContext());
+        dbAccess.open();
+        dbAccess.setNumber(id, s);
 
         EditText editText3 = findViewById(R.id.editNumber);
         editText3.setFocusableInTouchMode(false);

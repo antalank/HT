@@ -1,5 +1,6 @@
 package com.example.ht1;
 
+
 public class Customer {
     String password;
     int user_id;
