@@ -24,6 +24,7 @@ public class Main2Activity extends AppCompatActivity {
 
     ArrayList<Customer> customers = new ArrayList<>();
     public static int userIdSelection;
+    public static String userNameSelection;
     public static Main2Activity instance;
 
     @Override
@@ -94,6 +95,7 @@ public class Main2Activity extends AppCompatActivity {
                 if (gUser == user && gPassword.equals(password) && bankBicSelection == cust.BIC) {
                     apply++;
                     userIdSelection = user;
+                    userNameSelection = cust.getName();
                 }
             }
             if (apply > 0) {
