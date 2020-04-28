@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,7 +18,7 @@ import java.util.List;
 
 import static com.example.ht1.Main2Activity.userIdSelection;
 
-public class AccountActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AccountActivity extends BaseActivity implements AdapterView.OnItemSelectedListener {
     Context context;
     TextView textviewotsikko;
     TextView textviewData;
@@ -36,7 +37,13 @@ public class AccountActivity extends AppCompatActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account);
+
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        //inflating the activity layout here
+        View contentView = inflater.inflate(R.layout.activity_account, null, false);
+        mDrawer.addView(contentView, 0);
+
         textviewotsikko = (TextView) findViewById(R.id.textViewOtsikko);
         textviewotsikko.setText("Select account from drop down menu");
         textviewData = (TextView) findViewById((R.id.textViewData));

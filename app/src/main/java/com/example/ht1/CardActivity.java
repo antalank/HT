@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,7 +30,12 @@ public class CardActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_card);
+        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        //inflating the activity layout here
+        View contentView = inflater.inflate(R.layout.activity_card, null, false);
+        mDrawer.addView(contentView, 0);
+
         check_switch = findViewById(R.id.button8);
         amortise = findViewById(R.id.button6);
         spinner = findViewById(R.id.spinner);
