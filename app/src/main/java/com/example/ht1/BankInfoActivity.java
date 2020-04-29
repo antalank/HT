@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.ArrayList;
 
+import static com.example.ht1.Main2Activity.userIdSelection;
 import static com.example.ht1.MainActivity.bankBicSelection;
 
 public class BankInfoActivity extends BaseActivity {
@@ -37,20 +38,22 @@ public class BankInfoActivity extends BaseActivity {
         addressText = findViewById(R.id.textView2);
         numberText = findViewById(R.id.textView3);
 
-        String bic = bankBicSelection;
-        banks =  MainActivity.getInstance().getBanklist();
 
-        for (Bank bank : banks) {
-            if (bic == bank.getBIC()) {
-                name = bank.getName();
-                address = bank.getAddress();
-                number = bank.getPhone();
-            }
-        }
+        DB_Bank dbAccess = DB_Bank.getInstance(getApplicationContext());
+        dbAccess.open();
+
+        String bic = bankBicSelection;
+
+        name = dbAccess.getName(bic);
+        address = dbAccess.getAddress(bic);
+        number = dbAccess.getPhone(bic);
+
+
         nameText.setText("Name: " + name);
         addressText.setText("Address: " + address);
         numberText.setText("Phone number: " + number);
 
+        dbAccess.close();
     }
 
 }
