@@ -15,10 +15,10 @@ public class Bank {
         this.phone = phone;
     }
 
-    public int getId() { return id; }
+    /*public int getId() { return id; }
     public String getBIC() { return BIC; }
     public String getName() { return name; }
     public String getAddress() { return address; }
-    public  String getPhone() {return phone; }
+    public  String getPhone() {return phone; }*/
 
 }

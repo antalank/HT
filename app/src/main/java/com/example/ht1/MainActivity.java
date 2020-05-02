@@ -235,8 +235,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
     public void loadActivity1(View v){
-        bankBicSelection = bank.get(bankSelection).getBIC();
-        bankNameSelection = bank.get(bankSelection).getName();
+        DB_Bank dbAccess = DB_Bank.getInstance(getApplicationContext());
+        dbAccess.open();
+        int i;
+        bankBicSelection = dbAccess.getBIC(bankSelection);
+        bankNameSelection = dbAccess.getName(bankBicSelection);
         Intent intent = new Intent(MainActivity.this, Main2Activity.class);
         startActivity(intent);
     }

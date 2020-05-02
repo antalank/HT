@@ -147,7 +147,7 @@ public class DB_Account {
         }
         return buffer.toString();
     }
-    
+
 
     public String getUserIdCred(String s) {
         c = db.rawQuery("select user_id from credit_account where acc_num = '"+s+"'", new String[]{});
@@ -357,7 +357,7 @@ public class DB_Account {
         c.close();
     }
 
-    public String getCardNumCred(String s) {
+    public String getCardNumCred(int s) {
         c = db.rawQuery("select card_num from credit_card where acc_num = '"+s+"'", new String[]{});
         StringBuffer buffer = new StringBuffer();
         while(c.moveToNext()){
@@ -367,7 +367,7 @@ public class DB_Account {
         return buffer.toString();
     }
 
-    public String getCardNumDeb(String s) {
+    public String getCardNumDeb(int s) {
         c = db.rawQuery("select card_num from debit_card where acc_num = '"+s+"'", new String[]{});
         StringBuffer buffer = new StringBuffer();
         while(c.moveToNext()){
