@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="314dp"
-        android:layout_marginBottom="196dp"
+        android:layout_marginEnd="313dp"
+        android:layout_marginBottom="225dp"
         android:text="Switch" />
 
     <TextView
@@ -22,8 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="177dp"
-        android:layout_marginBottom="700dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="176dp"
+        android:layout_marginBottom="691dp"
         android:text="TextView"
         android:textSize="18sp" />
 
@@ -42,8 +43,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="571dp"
+        android:layout_marginBottom="580dp"
         android:ems="10"
         android:inputType="text"
         android:text="Name" />
@@ -64,8 +66,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="61dp"
-        android:layout_marginBottom="439dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="457dp"
         android:text="TextView" />
 
     <EditText
@@ -74,8 +77,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginEnd="101dp"
-        android:layout_marginBottom="386dp"
+        android:layout_marginBottom="404dp"
         android:ems="10"
         android:inputType="numberDecimal" />
 
@@ -85,8 +89,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="312dp"
-        android:layout_marginBottom="294dp"
+        android:layout_marginEnd="305dp"
+        android:layout_marginBottom="317dp"
         android:text="Switch" />
 
     <TextView
@@ -95,8 +99,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="63dp"
-        android:layout_marginBottom="352dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="368dp"
         android:text="TextView" />
 
     <TextView
@@ -105,8 +110,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginEnd="52dp"
-        android:layout_marginBottom="255dp"
+        android:layout_marginBottom="279dp"
         android:text="TextView" />
 
     <Button
@@ -115,19 +121,21 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="162dp"
-        android:layout_marginBottom="122dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="188dp"
+        android:layout_marginBottom="150dp"
         android:onClick="pay"
         android:text="Pay" />
 
     <TextView
         android:id="@+id/textViewPay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="47dp"
+        android:layout_height="0dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="179dp"
-        android:layout_marginBottom="66dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="190dp"
+        android:layout_marginBottom="110dp"
         android:text="TextView" />
 
     <TextView
@@ -136,8 +144,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="183dp"
-        android:layout_marginBottom="537dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="182dp"
+        android:layout_marginBottom="547dp"
         android:text="TextView" />
 
     <EditText
@@ -146,8 +155,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="99dp"
-        android:layout_marginBottom="482dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="102dp"
+        android:layout_marginBottom="491dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name" />
@@ -159,7 +169,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="52dp"
-        android:layout_marginBottom="193dp"
+        android:layout_marginBottom="215dp"
         android:ems="10"
         android:inputType="number" />
 
@@ -170,6 +180,21 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="64dp"
-        android:layout_marginBottom="284dp"
+        android:layout_marginBottom="310dp"
         android:text="Select due date" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="659dp"
+        android:layout_marginEnd="112dp"
+        android:layout_marginBottom="24dp"
+        android:onClick="upComingPayments"
+        android:text="Upcoming payments" />
 </RelativeLayout>
