@@ -109,17 +109,6 @@
         android:layout_marginBottom="255dp"
         android:text="TextView" />
 
-    <EditText
-        android:id="@+id/editTextFreq"
-        android:layout_width="171dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="51dp"
-        android:layout_marginBottom="291dp"
-        android:ems="10"
-        android:inputType="date" />
-
     <Button
         android:id="@+id/buttonPay"
         android:layout_width="wrap_content"
@@ -162,4 +151,25 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name" />
+
+    <EditText
+        android:id="@+id/editTextFreq"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="193dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/buttonDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="284dp"
+        android:text="Select due date" />
 </RelativeLayout>

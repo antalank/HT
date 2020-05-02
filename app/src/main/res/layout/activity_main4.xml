@@ -41,6 +41,7 @@
                 android:includeFontPadding="false"
                 android:singleLine="false"
                 android:text="**Choose activity from menu**" />
+
         </FrameLayout>
 
     </LinearLayout>
