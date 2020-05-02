@@ -170,7 +170,7 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
         account_event =  MainActivity.getInstance().getAccountEventlist();
         debit_accounts = MainActivity.getInstance().getDebitaccountlist();
         credit_accounts = MainActivity.getInstance().getCreditaccountlist();
-        paylog =  Main3Activity.getInstance().getPaylog();
+        paylog =  MainActivity.getInstance().getPaylog();
 
         for (Debit_account d_a : debit_accounts) {
             id = userIdSelection;

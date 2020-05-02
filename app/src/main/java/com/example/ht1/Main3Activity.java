@@ -42,7 +42,7 @@ public class Main3Activity extends AppCompatActivity {
 
     int a = 0;
 
-    ArrayList<PayLog> paylog = new ArrayList<>();
+    //ArrayList<PayLog> paylog = new ArrayList<>();
     ArrayList<AccountEvent> account_event = new ArrayList<>();
     ArrayList<Debit_account> debit_accounts = new ArrayList<>();
     ArrayList<Credit_account> credit_accounts = new ArrayList<>();
@@ -61,7 +61,7 @@ public class Main3Activity extends AppCompatActivity {
         instance = this;
 
     }
-    public static Main3Activity getInstance() { return instance; }
+    //public static Main3Activity getInstance() { return instance; }
 
     public void randomNumber() {
         double rand = Math.random();
@@ -73,14 +73,13 @@ public class Main3Activity extends AppCompatActivity {
         textView1.setText(text);
     }
 
-    public void execute() {
+    /*public void execute() {
         for (PayLog p : paylog) {
             System.out.println(p.getIde() + " " + p.getDate_() + " " +  p.getSum() + " " +  p.getFrom_account() + " " +  p.getFrom_name() + " " +  p.getTo_account() + " " +  p.getTo_name());
         }
         account_event =  MainActivity.getInstance().getAccountEventlist();
         debit_accounts = MainActivity.getInstance().getDebitaccountlist();
         credit_accounts = MainActivity.getInstance().getCreditaccountlist();
-
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat(("dd-MM-yyyy"));
@@ -156,16 +155,16 @@ public class Main3Activity extends AppCompatActivity {
                 }
             }
         }
-    }
+    }*/
     public void loadActivity3(View v){
         String number = editText1.getText().toString();
         if (number.equals(text)) {
-            execute();
+            //execute();
             Intent intent = new Intent(Main3Activity.this, Main4Activity.class);
             startActivity(intent);
         } else if (number != text) {
             textViewError.setText("Wrong number!, try again");
         }
     }
-    public ArrayList<PayLog> getPaylog() { return paylog; }
+    //public ArrayList<PayLog> getPaylog() { return paylog; }
 }

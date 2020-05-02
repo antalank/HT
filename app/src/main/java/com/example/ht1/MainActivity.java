@@ -140,5 +140,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public ArrayList<Credit_account> getCreditaccountlist() { return credit_accounts; }
     public ArrayList<Credit_card> getCreditCards() { return credit_cards; }
     public ArrayList<Debit_card> getDebitCards() { return debit_cards; }
+    public void printCreditCards(){
+        for (int i = 0; i < credit_cards.size(); i++) {
+            System.out.println(credit_cards.get(i).getDrawLimit());
+            System.out.println(credit_cards.get(i).getUseLimit());
+            System.out.println(credit_cards.get(i).getArea());
+        }
+    }
 }
 

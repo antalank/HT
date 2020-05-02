@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.navigation.NavigationView;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -49,14 +51,25 @@ public class Main4Activity extends BaseActivity {
     String to_account;
     String to_name;
 
+    String bankName;
+
     int a = 0;
 
     ArrayList<PayLog> paylog = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        textView4BankName = findViewById(R.id.textView4BankName);
-        //     textView4BankName.setText("Welcome to " + bankNameSelection + "!");
+        try {
+
+
+            textView4BankName = (TextView) findViewById(R.id.textView4BankName);
+            //bankName = ("Welcome to " + bankNameSelection + "!");
+            //textView4BankName.setText(bankName);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -66,6 +79,7 @@ public class Main4Activity extends BaseActivity {
         account_event =  MainActivity.getInstance().getAccountEventlist();
         debit_accounts = MainActivity.getInstance().getDebitaccountlist();
         credit_accounts = MainActivity.getInstance().getCreditaccountlist();
+        System.out.println("###################¤¤¤¤¤¤¤¤¤¤¤    " + bankNameSelection);
         new LongRunningTask().execute();
         //instance = this;
     }

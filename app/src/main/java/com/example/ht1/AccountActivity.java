@@ -23,12 +23,15 @@ public class AccountActivity extends BaseActivity implements AdapterView.OnItemS
     TextView textviewotsikko;
     TextView textviewData;
     TextView textViewWrite;
+    TextView textViewBalance;
+    TextView textViewBal;
     int selection;
     String r_account;
     String write = "";
     String writeFileName = "";
     String account;
     String event_string;
+    String summ;
     ArrayList<AccountEvent> account_event = new ArrayList<>();
     ArrayList<Debit_account> debit_accounts = new ArrayList<>();
     ArrayList<Credit_account> credit_accounts = new ArrayList<>();
@@ -50,6 +53,11 @@ public class AccountActivity extends BaseActivity implements AdapterView.OnItemS
         textviewData.setText("Accountevents are listed here");
         textViewWrite = (TextView) findViewById(R.id.textViewWrite);
         textViewWrite.setText("");
+        textViewBalance = (TextView) findViewById(R.id.textViewBalance);
+        textViewBalance.setText("Balance:");
+        textViewBal = (TextView) findViewById(R.id.textViewBal);
+        textViewBal.setText("");
+
         context = AccountActivity.this;
         spinner();
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
@@ -105,6 +113,19 @@ public class AccountActivity extends BaseActivity implements AdapterView.OnItemS
                 textviewData.append(event_string);
             }
         } write = textviewData.getText().toString();
+
+        for (Debit_account d_a : debit_accounts) {
+            if (account.equals(d_a.getAccountNumber())) {
+                String bal = String.valueOf(d_a.getBalance());
+                textViewBal.setText(bal);
+            }
+        }
+        for (Credit_account c_a : credit_accounts) {
+            if (account.equals(c_a.getAccountNumber())) {
+                String bal = String.valueOf(c_a.getBalance());
+                textViewBal.setText(bal);
+            }
+        }
     }
     public void writeDatatoFile(View view) {
     try {

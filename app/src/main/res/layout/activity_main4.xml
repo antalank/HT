@@ -22,13 +22,13 @@
                 android:id="@+id/textView4BankName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="40dp"
                 android:layout_marginLeft="90dp"
-                android:textSize="25dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
                 android:includeFontPadding="false"
                 android:singleLine="false"
-                android:text="** name of the Bank**" />
+                android:text="** name of the Bank**"
+                android:textSize="25dp" />
 
             <TextView
                 android:id="@+id/textView4"
