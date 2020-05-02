@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="461dp"
+        android:layout_marginTop="515dp"
         android:onClick="changeSettings"
         android:text="Change card settings" />
 
@@ -44,8 +44,8 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginEnd="103dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="108dp"
+        android:layout_marginBottom="46dp"
         android:onClick="addCard"
         android:text="add new card" />
 
@@ -94,11 +94,12 @@
         android:id="@+id/button10"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="106dp"
-        android:layout_marginBottom="309dp"
+        android:layout_marginEnd="109dp"
+        android:layout_marginBottom="312dp"
+        android:onClick="withdrawMoney"
         android:text="withdraw money" />
 
 </RelativeLayout>

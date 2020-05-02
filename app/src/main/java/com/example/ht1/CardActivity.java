@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ import static com.example.ht1.Main2Activity.userIdSelection;
 public class CardActivity extends BaseActivity {
 
     public static String cardTypeSelection;
+    public static String cardNumSelection;
     public static String accountNumSelection;
 
     Spinner spinner;
@@ -33,10 +35,6 @@ public class CardActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        System.out.println("TOIMII");
-        MainActivity.getInstance().printCreditCards();
-
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -79,7 +77,7 @@ public class CardActivity extends BaseActivity {
                 Switch sw;
                 sw = (Switch) findViewById(R.id.switch1);
                 if (sw.isChecked()) {
-                    // listing credit cards in spinner
+                    //// listing credit cards in spinner
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, credit_cards_list);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
@@ -87,7 +85,7 @@ public class CardActivity extends BaseActivity {
                     cardTypeSelection = "Credit";
 
                 } else {
-                    // listing debit cards in spinner
+                    //// listing debit cards in spinner
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, debit_cards_list);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
@@ -151,6 +149,21 @@ public class CardActivity extends BaseActivity {
     public void changeSettings(View v){
         Intent intent = new Intent(CardActivity.this, CardSettingsActivity.class);
         startActivity(intent);
+    }
+
+    public void withdrawMoney(View v) {
+
+        // making sure that the user has selected a card
+        String card = spinner.getSelectedItem().toString();
+        if (card.equals("Show credit cards")) {
+            Toast.makeText(getApplicationContext(), "Select card first!", Toast.LENGTH_SHORT).show();
+        } else if (card.equals("Show debit cards")) {
+            Toast.makeText(getApplicationContext(), "Select card first!", Toast.LENGTH_SHORT).show();
+        } else {
+            cardNumSelection = card;
+            Intent intent = new Intent(CardActivity.this, WithdrawActivity.class);
+            startActivity(intent);
+        }
     }
 }
 
