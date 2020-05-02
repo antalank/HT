@@ -10,7 +10,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+
+import static com.example.ht1.Main2Activity.userIdSelection;
+import static com.example.ht1.Main2Activity.userNameSelection;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //All arraylists are listed here
@@ -20,12 +26,29 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ArrayList<Debit_card> debit_cards = new ArrayList<>();
     ArrayList<Credit_card> credit_cards = new ArrayList<>();
     ArrayList<AccountEvent> account_event = new ArrayList<>();
+    ArrayList<PayLog> paylog = new ArrayList<>();
 
     public static MainActivity instance;
     public static int bankSelection;
     public static String bankBicSelection;
     public static String bankNameSelection;
 
+    String yearString;
+    String monthString;
+    String dayString;
+    String dateString;
+    String date_commit;
+    int dateInt;
+
+    int id;
+    int date_int;
+    float sum;
+    String from_account;
+    String from_name;
+    String to_account;
+    String to_name;
+
+    int a = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,6 +141,89 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             return null;
         }
     }
+    public void execute() {
+        for (PayLog p : paylog) {
+            System.out.println(p.getIde() + " " + p.getDate_() + " " +  p.getSum() + " " +  p.getFrom_account() + " " +  p.getFrom_name() + " " +  p.getTo_account() + " " +  p.getTo_name());
+        }
+        account_event =  MainActivity.getInstance().getAccountEventlist();
+        debit_accounts = MainActivity.getInstance().getDebitaccountlist();
+        credit_accounts = MainActivity.getInstance().getCreditaccountlist();
+
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat(("dd-MM-yyyy"));
+        String formattedDate = df.format(c);
+        String[] separated = formattedDate.split("-");
+        dayString = separated[0];
+        monthString = separated[1];
+        if (monthString.equals("01")) {
+            monthString = "1";
+        } else if (monthString.equals("02")) {
+            monthString = "2";
+        } else if (monthString.equals("03")) {
+            monthString = "3";
+        } else if (monthString.equals("04")) {
+            monthString = "4";
+        } else if (monthString.equals("05")) {
+            monthString = "5";
+        } else if (monthString.equals("06")) {
+            monthString = "6";
+        } else if (monthString.equals("07")) {
+            monthString = "7";
+        } else if (monthString.equals("08")) {
+            monthString = "8";
+        } else if (monthString.equals("09")) {
+            monthString = "9";
+        }
+        yearString = separated[2];
+        dateString = (yearString + monthString + dayString);
+        dateInt = Integer.parseInt(dateString);
+        System.out.println(dateInt);
+        System.out.println("222222222222222222222222222222222222");
+        // pay-method here
+        for (PayLog p : paylog) {
+            System.out.println(p.getDate_());
+            if (dateInt >= p.getDate_()) {
+                System.out.println("#####################################");
+                if (userIdSelection == p.getIde()) {
+                    System.out.println("Accountevent will be paid");
+                    id = p.getIde();
+                    date_int = p.getDate_();
+                    sum = p.getSum();
+                    from_account = p.getFrom_account();
+                    from_name = p.getFrom_name();
+                    to_account = p.getTo_account();
+                    to_name = p.getTo_name();
+                    a++;
+                }
+            }
+        }
+        if (a > 0) {
+            date_commit = (dayString + "." + monthString + "." + yearString);
+            account_event.add(new AccountEvent(1, from_account, date_commit, -(sum), to_account, to_name));
+            account_event.add(new AccountEvent(2, to_account, date_commit, sum, from_account, userNameSelection));
+
+            for (Debit_account d_a : debit_accounts) {
+                if (from_account.equals(d_a.getAccountNumber())) {
+                    d_a.pay(sum);
+                }
+            }
+            for (Credit_account c_a : credit_accounts) {
+                if (from_account.equals(c_a.getAccountNumber())) {
+                    c_a.pay(sum);
+                }
+            }
+            for (Debit_account d_a : debit_accounts) {
+                if (d_a.getAccountNumber().equals(to_account)) {
+                    d_a.addMoney(sum);
+                }
+            }
+            for (Credit_account c_a : credit_accounts) {
+                if (c_a.getAccountNumber().equals(to_account)) {
+                    c_a.addMoney(sum);
+                }
+            }
+        }
+    }
     //spinner
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -140,6 +246,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public ArrayList<Credit_account> getCreditaccountlist() { return credit_accounts; }
     public ArrayList<Credit_card> getCreditCards() { return credit_cards; }
     public ArrayList<Debit_card> getDebitCards() { return debit_cards; }
+    public ArrayList<PayLog> getPaylog() { return paylog; }
     public void printCreditCards(){
         for (int i = 0; i < credit_cards.size(); i++) {
             System.out.println(credit_cards.get(i).getDrawLimit());
