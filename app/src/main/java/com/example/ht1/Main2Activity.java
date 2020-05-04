@@ -13,6 +13,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import static com.example.ht1.MainActivity.bankBicSelection;
+import static com.example.ht1.SHA512.getSHA512;
+import static com.example.ht1.DB_Customer.salt_list;
+import static com.example.ht1.SHA512.salt;
 
 
 public class Main2Activity extends AppCompatActivity {
@@ -22,7 +25,8 @@ public class Main2Activity extends AppCompatActivity {
     Context context = null;
     TextView text;
 
-    //ArrayList<Customer> customers = new ArrayList<>();
+    ArrayList<Salt> salt_listt = new ArrayList<>();
+
     public static int userIdSelection;
     public static String userNameSelection;
     public static Main2Activity instance;
@@ -36,6 +40,7 @@ public class Main2Activity extends AppCompatActivity {
         context = Main2Activity.this;
         text = (TextView) findViewById(R.id.textView_error);
         text.setText("");
+        salt_listt = salt_list;
         //new LongRunningTask().execute();
         instance = this;
     }
@@ -87,10 +92,24 @@ public class Main2Activity extends AppCompatActivity {
             dbAccess.open();
             password = dbAccess.getPassword(gUser);
             bic = dbAccess.getBIC(gUser);
-            if (gPassword.equals(password) && bankBicSelection.equals(bic)) {
-                apply++;
-                userIdSelection = gUser;
-                userNameSelection = dbAccess.getName(gUser);
+            System.out.println(salt_listt.size());
+            for(int i = 0; i < salt_listt.size(); i++){
+                System.out.println("Toimiiko");
+                System.out.println(salt_listt.get(i).getUser());
+                System.out.println(salt_listt.get(i).getSalt());
+                System.out.println(gUser);
+                if(gUser == salt_listt.get(i).getUser()){
+                    String currSalt = salt_listt.get(i).getSalt();
+                    String salt = salt(password, currSalt);
+                    String pass = getSHA512(password, salt);
+                    System.out.println("Toimii");
+                    if (pass.equals(password) && bankBicSelection.equals(bic)) {
+                        apply++;
+                        userIdSelection = gUser;
+                        userNameSelection = dbAccess.getName(gUser);
+                        System.out.println(dbAccess.getPassword(gUser));
+                    }
+                }
             }
             dbAccess.close();
             if (apply > 0) {

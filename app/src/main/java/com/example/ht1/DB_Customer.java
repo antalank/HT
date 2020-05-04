@@ -5,9 +5,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
+import static com.example.ht1.SHA512.getSHA512;
+import static com.example.ht1.SHA512.salt;
+import static com.example.ht1.RandomStringGenerator.getNewSalt;
+
 public class DB_Customer {
     private SQLiteOpenHelper openHelper;
     private SQLiteDatabase db;
+    public static ArrayList<Salt> salt_list = new ArrayList<>();
     private static DB_Customer instance;
     Cursor c = null;
 
@@ -16,6 +23,13 @@ public class DB_Customer {
     }
 
     public static DB_Customer getInstance(Context context){
+        if (instance == null){
+            instance = new DB_Customer(context);
+        }
+        return instance;
+    }
+
+    public static DB_Customer getInstance2(Context context){
         if (instance == null){
             instance = new DB_Customer(context);
         }
@@ -118,14 +132,26 @@ public class DB_Customer {
     }
 
     public void addCustomer(int u, String s, String n, String t, String a, String p, String pc, String b){
-        c = db.rawQuery("insert into customer values("+u+", '"+s+"', '"+n+"', '"+t+"', '"+a+"', '"+p+"', '"+pc+"', '"+b+"')", null);
+        String randomSalt = getNewSalt();
+        String salt = salt(p, randomSalt);
+        salt_list.add(new Salt(salt, u));
+        String pass = getSHA512(p, salt);
+        c = db.rawQuery("insert into customer values("+u+", '"+s+"', '"+n+"', '"+t+"', '"+a+"', '"+pass+"', '"+pc+"', '"+b+"')", null);
         c.moveToFirst();
         c.close();
     }
 
     public void changePassword(int u, String p){
-        c = db.rawQuery("update customer set password = '"+p+"' where user_id = '"+u+"'", null);
+        String randomSalt = getNewSalt();
+        String salt = salt(p, randomSalt);
+        salt_list.add(new Salt(salt, u));
+        String pass = getSHA512(p, salt);
+        c = db.rawQuery("update customer set password = '"+pass+"' where user_id = '"+u+"'", null);
         c.moveToFirst();
         c.close();
+    }
+
+    public ArrayList getSaltList(){
+        return salt_list; //TODO Yritä
     }
 }
