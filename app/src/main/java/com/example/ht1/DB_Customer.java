@@ -116,4 +116,16 @@ public class DB_Customer {
         }
         return buffer.toString();
     }
+
+    public void addCustomer(int u, String s, String n, String t, String a, String p, String pc, String b){
+        c = db.rawQuery("insert into customer values("+u+", '"+s+"', '"+n+"', '"+t+"', '"+a+"', '"+p+"', '"+pc+"', '"+b+"')", null);
+        c.moveToFirst();
+        c.close();
+    }
+
+    public void changePassword(int u, String p){
+        c = db.rawQuery("update customer set password = '"+p+"' where user_id = '"+u+"'", null);
+        c.moveToFirst();
+        c.close();
+    }
 }

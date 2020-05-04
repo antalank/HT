@@ -87,12 +87,10 @@ public class Main2Activity extends AppCompatActivity {
             dbAccess.open();
             password = dbAccess.getPassword(gUser);
             bic = dbAccess.getBIC(gUser);
-            if (gPassword.equals(password)) {
-                if (bankBicSelection.equals(bic)){
-                    apply++;
-                    userIdSelection = gUser;
-                    userNameSelection = dbAccess.getName(gUser);
-                }
+            if (gPassword.equals(password) && bankBicSelection.equals(bic)) {
+                apply++;
+                userIdSelection = gUser;
+                userNameSelection = dbAccess.getName(gUser);
             }
             dbAccess.close();
             if (apply > 0) {
