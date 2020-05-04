@@ -3,6 +3,7 @@ package com.example.ht1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.OutputStreamWriter;
 import java.time.LocalDate;
@@ -22,7 +24,6 @@ public class AccountActivity extends BaseActivity implements AdapterView.OnItemS
     Context context;
     TextView textviewotsikko;
     TextView textviewData;
-    TextView textViewWrite;
     TextView textViewBalance;
     TextView textViewBal;
     int selection;
@@ -51,12 +52,11 @@ public class AccountActivity extends BaseActivity implements AdapterView.OnItemS
         textviewotsikko.setText("Select account from drop down menu");
         textviewData = (TextView) findViewById((R.id.textViewData));
         textviewData.setText("Accountevents are listed here");
-        textViewWrite = (TextView) findViewById(R.id.textViewWrite);
-        textViewWrite.setText("");
         textViewBalance = (TextView) findViewById(R.id.textViewBalance);
         textViewBalance.setText("Balance:");
         textViewBal = (TextView) findViewById(R.id.textViewBal);
         textViewBal.setText("");
+
 
         context = AccountActivity.this;
         spinner();
@@ -74,6 +74,7 @@ public class AccountActivity extends BaseActivity implements AdapterView.OnItemS
         account_event =  MainActivity.getInstance().getAccountEventlist();
         debit_accounts = MainActivity.getInstance().getDebitaccountlist();
         credit_accounts = MainActivity.getInstance().getCreditaccountlist();
+
 
         for (Debit_account d_a : debit_accounts) {
             id = userIdSelection;
@@ -134,7 +135,7 @@ public class AccountActivity extends BaseActivity implements AdapterView.OnItemS
         OutputStreamWriter ows = new OutputStreamWriter(context.openFileOutput(writeFileName, Context.MODE_PRIVATE));
         ows.write(write);
         ows.close();
-        textViewWrite.setText("Events wrote to phone's memory");
+        Toast.makeText(getApplicationContext(), "Events wrote to phone's memory", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
         e.printStackTrace();
         } finally {
@@ -149,5 +150,10 @@ public class AccountActivity extends BaseActivity implements AdapterView.OnItemS
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public void addNewActivity(View v){
+        Intent intent = new Intent(AccountActivity.this, AddAccountActivity.class);
+        startActivity(intent);
     }
 }
