@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         instance = this;
 
-        //new LongRunningTask().execute();
+        new LongRunningTask().execute();
     }
     public static MainActivity getInstance() {
         return instance;
