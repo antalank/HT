@@ -22,7 +22,7 @@ public class Main2Activity extends AppCompatActivity {
     Context context = null;
     TextView text;
 
-    ArrayList<Customer> customers = new ArrayList<>();
+    //ArrayList<Customer> customers = new ArrayList<>();
     public static int userIdSelection;
     public static String userNameSelection;
     public static Main2Activity instance;
@@ -36,7 +36,7 @@ public class Main2Activity extends AppCompatActivity {
         context = Main2Activity.this;
         text = (TextView) findViewById(R.id.textView_error);
         text.setText("");
-        new LongRunningTask().execute();
+        //new LongRunningTask().execute();
         instance = this;
     }
 
@@ -44,7 +44,7 @@ public class Main2Activity extends AppCompatActivity {
         return instance;
     }
 
-    private class LongRunningTask extends AsyncTask<Void, Void, Void> {
+    /*private class LongRunningTask extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
             System.out.println("Background prosess starts");
@@ -58,23 +58,24 @@ public class Main2Activity extends AppCompatActivity {
 
             return null;
         }
-    }
+    }*/
 
-    public ArrayList<Customer> getCustomerlist() {
+    /*public ArrayList<Customer> getCustomerlist() {
         return customers;
-    }
+    }*/
 
 
     public void loadActivity2(View v) {
         int apply = 0;
-        int user;
+
+        String bic;
         String password;
         String gU = giveUser.getText().toString();
-
         String gPassword = givePass.getText().toString();
-        int lenght1 = 0;
-        int lenght2 = 0;
-        int bank;
+
+        int lenght1;
+        int lenght2;
+
         lenght1 = gU.length();
         lenght2 = gPassword.length();
 
@@ -82,17 +83,18 @@ public class Main2Activity extends AppCompatActivity {
             text.setText("Give your user id and password");
         } else {
             int gUser = Integer.parseInt(gU);
-            for (Customer cust : customers) {
-                System.out.println();
-                user = cust.user_id;
-                password = cust.password;
-
-                if (gUser == user && gPassword.equals(password) && bankBicSelection == cust.BIC) {
+            DB_Customer dbAccess = DB_Customer.getInstance(getApplicationContext());
+            dbAccess.open();
+            password = dbAccess.getPassword(gUser);
+            bic = dbAccess.getBIC(gUser);
+            if (gPassword.equals(password)) {
+                if (bankBicSelection.equals(bic)){
                     apply++;
-                    userIdSelection = user;
-                    userNameSelection = cust.getName();
+                    userIdSelection = gUser;
+                    userNameSelection = dbAccess.getName(gUser);
                 }
             }
+            dbAccess.close();
             if (apply > 0) {
                 Intent intent = new Intent(Main2Activity.this, Main3Activity.class);
                 startActivity(intent);

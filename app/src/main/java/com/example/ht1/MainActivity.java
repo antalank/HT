@@ -242,6 +242,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         bankNameSelection = dbAccess.getName(bankBicSelection);
         Intent intent = new Intent(MainActivity.this, Main2Activity.class);
         startActivity(intent);
+        dbAccess.close();
     }
     public ArrayList<Bank> getBanklist() { return bank; }
     public ArrayList<AccountEvent> getAccountEventlist() { return account_event; }
@@ -250,12 +251,5 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public ArrayList<Credit_card> getCreditCards() { return credit_cards; }
     public ArrayList<Debit_card> getDebitCards() { return debit_cards; }
     public ArrayList<PayLog> getPaylog() { return paylog; }
-    public void printCreditCards(){
-        for (int i = 0; i < credit_cards.size(); i++) {
-            System.out.println(credit_cards.get(i).getDrawLimit());
-            System.out.println(credit_cards.get(i).getUseLimit());
-            System.out.println(credit_cards.get(i).getArea());
-        }
-    }
 }
 

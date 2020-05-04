@@ -2,7 +2,7 @@ package com.example.ht1;
 
 
 public class Customer {
-    String password;
+    /*String password;
     int user_id;
     String BIC;
     String SSN;
@@ -50,7 +50,7 @@ public class Customer {
     public void setName(String s) { name = s; }
     public void setAddress(String s) { address = s; }
     public void setNumber(String s) { telephone = s; }
-    public void setPostalCode(String s) { postal_code = s; }
+    public void setPostalCode(String s) { postal_code = s; }*/
 
 }
 

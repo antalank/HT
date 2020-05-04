@@ -96,4 +96,24 @@ public class DB_Customer {
         c.moveToFirst();
         c.close();
     }
+
+    public String getBIC(int u){
+        c = db.rawQuery("select BIC from customer where user_id = '"+u+"'", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        while(c.moveToNext()){
+            String bic = c.getString(0);
+            buffer.append(""+bic);
+        }
+        return buffer.toString();
+    }
+
+    public String getPassword(int u){
+        c = db.rawQuery("select password from customer where user_id = '"+u+"'", new String[]{});
+        StringBuffer buffer = new StringBuffer();
+        while(c.moveToNext()){
+            String password = c.getString(0);
+            buffer.append(""+password);
+        }
+        return buffer.toString();
+    }
 }
