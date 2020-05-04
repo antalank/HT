@@ -128,18 +128,18 @@ public class AccountActivity extends BaseActivity implements AdapterView.OnItemS
         }
     }
     public void writeDatatoFile(View view) {
-    try {
+        try {
         LocalDate time = LocalDate.now();
         writeFileName = ("Account: " + r_account + ", " + time.toString());
         OutputStreamWriter ows = new OutputStreamWriter(context.openFileOutput(writeFileName, Context.MODE_PRIVATE));
         ows.write(write);
         ows.close();
         textViewWrite.setText("Events wrote to phone's memory");
-    } catch (Exception e) {
+        } catch (Exception e) {
         e.printStackTrace();
-    } finally {
+        } finally {
         System.out.println("###Wrote###");
-    }
+        }
     }
     //spinner
     @Override

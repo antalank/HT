@@ -1,7 +1,7 @@
 package com.example.ht1;
 
-public class Bank {
-    private int id;
+//public class Bank {
+    /*private int id;
     private String BIC;
     private String name;
     private String address;
@@ -13,7 +13,7 @@ public class Bank {
         this.name = name;
         this.address = address;
         this.phone = phone;
-    }
+    }*/
 
     /*public int getId() { return id; }
     public String getBIC() { return BIC; }
@@ -21,4 +21,4 @@ public class Bank {
     public String getAddress() { return address; }
     public  String getPhone() {return phone; }*/
 
-}
+//}

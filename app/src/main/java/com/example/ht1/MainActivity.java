@@ -20,7 +20,7 @@ import static com.example.ht1.Main2Activity.userNameSelection;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     //All arraylists are listed here
-    ArrayList<Bank> bank = new ArrayList();
+    //ArrayList<Bank> bank = new ArrayList();
     ArrayList<Debit_account> debit_accounts = new ArrayList<>();
     ArrayList<Credit_account> credit_accounts = new ArrayList<>();
     ArrayList<Debit_card> debit_cards = new ArrayList<>();
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         instance = this;
 
-        new LongRunningTask().execute();
+        //new LongRunningTask().execute();
     }
     public static MainActivity getInstance() {
         return instance;
@@ -72,12 +72,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         @Override
         protected Void doInBackground(Void... voids) {
             System.out.println("Background prosess starts");
-            System.out.println("Adding banks");
+            /*System.out.println("Adding banks");
             bank.add(new Bank(0, "OKOYFIHH", "Osuuspankki", "Arkadiankatu 23, 00100 Helsinki", "1000500"));
             bank.add(new Bank(1, "NDEAFIHH", "Nordea", "Satamaradankatu 5, 00020 Helsinki", "02003000"));
             bank.add(new Bank(2, "HANDFIHH", "Handelsbanken", "Itämerenkatu 11-13, 00180 Helsinki", "01044411"));
             bank.add(new Bank(3, "ITELFIHH", "Säästöpankki", "Teollisuuskatu 33, 00510 Helsinki", "0207032450"));
-            bank.add(new Bank(4, "SBANFIHH", "S-Pankki", "Fleminginkatu 34, 00510 Helsinki", "010765800"));
+            bank.add(new Bank(4, "SBANFIHH", "S-Pankki", "Fleminginkatu 34, 00510 Helsinki", "010765800"));*/
 
             System.out.println("Adding accounts");
             debit_accounts.add(new Debit_account("FI55 3131 1000 6789 41", 3894.55f, 566789, "31.12.2017", 6500f));
@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         startActivity(intent);
         dbAccess.close();
     }
-    public ArrayList<Bank> getBanklist() { return bank; }
+    //public ArrayList<Bank> getBanklist() { return bank; }
     public ArrayList<AccountEvent> getAccountEventlist() { return account_event; }
     public ArrayList<Debit_account> getDebitaccountlist() { return debit_accounts; }
     public ArrayList<Credit_account> getCreditaccountlist() { return credit_accounts; }

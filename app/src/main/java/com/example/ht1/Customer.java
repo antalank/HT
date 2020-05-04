@@ -1,7 +1,7 @@
 package com.example.ht1;
 
 
-public class Customer {
+//public class Customer {
     /*String password;
     int user_id;
     String BIC;
@@ -52,6 +52,6 @@ public class Customer {
     public void setNumber(String s) { telephone = s; }
     public void setPostalCode(String s) { postal_code = s; }*/
 
-}
+//}
 
 

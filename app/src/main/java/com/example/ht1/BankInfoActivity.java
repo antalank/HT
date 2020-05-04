@@ -21,7 +21,7 @@ public class BankInfoActivity extends BaseActivity {
     String address;
     String number;
 
-    ArrayList<Bank> banks = new ArrayList<>();
+    //ArrayList<Bank> banks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
