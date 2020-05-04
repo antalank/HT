@@ -2,6 +2,7 @@ package com.example.ht1;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,6 +38,9 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
     EditText editTextSum;
     EditText editTextName;
     EditText editTextFreq;
+    Spinner spinner2;
+
+    public static String selectedAccNum;
 
     int selection;
     int i = 0;
@@ -129,7 +134,7 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner spinner2 = (Spinner) findViewById(R.id.spinnerPayment);
+        spinner2 = (Spinner) findViewById(R.id.spinnerPayment);
         spinner2.setAdapter(adapter);
         spinner2.setOnItemSelectedListener(this);
 
@@ -486,4 +491,12 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
         date_ = Integer.parseInt(date_selection);
         textViewPay.setText(year + ", " + (month + 1) + ", " + dayOfMonth);
     }
+
+    public void upComingPayments(View v){
+        String acc = spinner2.getSelectedItem().toString();
+        selectedAccNum = acc;
+        Intent intent = new Intent(PaymentActivity.this, UpcomingPaymentActivity.class);
+        startActivity(intent);
+    }
 }
+
