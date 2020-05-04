@@ -15,10 +15,13 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -34,6 +37,8 @@ public class Main4Activity extends BaseActivity {
     ArrayList<AccountEvent> account_event = new ArrayList<>();
     ArrayList<Debit_account> debit_accounts = new ArrayList<>();
     ArrayList<Credit_account> credit_accounts = new ArrayList<>();
+
+    String writeFileName;
 
     //public static Main4Activity instance;
 
@@ -171,6 +176,7 @@ public class Main4Activity extends BaseActivity {
             }
         }
     }
+
 
     //public ArrayList<PayLog> getPaylog() { return paylog; }
 

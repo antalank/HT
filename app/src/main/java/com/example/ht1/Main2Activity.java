@@ -102,5 +102,11 @@ public class Main2Activity extends AppCompatActivity {
             }
         }
     }
+
+    public void addUserActivity(View v) {
+        Intent intent = new Intent(Main2Activity.this, AddUserActivity.class);
+        startActivity(intent);
+    }
 }
+
 
