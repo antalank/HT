@@ -38,10 +38,6 @@ public class Main4Activity extends BaseActivity {
     ArrayList<Debit_account> debit_accounts = new ArrayList<>();
     ArrayList<Credit_account> credit_accounts = new ArrayList<>();
 
-    String writeFileName;
-
-    //public static Main4Activity instance;
-
     String yearString;
     String monthString;
     String dayString;
@@ -176,8 +172,4 @@ public class Main4Activity extends BaseActivity {
             }
         }
     }
-
-
-    //public ArrayList<PayLog> getPaylog() { return paylog; }
-
 }
