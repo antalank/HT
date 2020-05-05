@@ -21,6 +21,7 @@ public class UpcomingPaymentActivity extends AppCompatActivity {
     ArrayList<PayLog> paylog_list = new ArrayList<>();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
