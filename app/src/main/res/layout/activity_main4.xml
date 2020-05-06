@@ -43,6 +43,13 @@
                 android:text="**Choose activity from menu**"
                 android:textSize="16dp" />
 
+            <Button
+                android:id="@+id/buttonLogOut"
+                android:layout_width="155dp"
+                android:layout_height="123dp"
+                android:onClick="LogOut"
+                android:text="Log Out" />
+
         </FrameLayout>
 
     </LinearLayout>
