@@ -12,8 +12,6 @@ import java.util.ArrayList;
 public class UpcomingPaymentActivity extends AppCompatActivity {
     TextView textView;
 
-    final String card_num = PaymentActivity.selectedAccNum;
-    public static String cardType;
     public String event_string;
 
     ArrayList<Credit_card> credit_cards = new ArrayList<>();
@@ -28,6 +26,7 @@ public class UpcomingPaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_upcoming_payment);
 
         textView = (TextView) findViewById((R.id.textViewData));
+        textView.setText("");
 
         credit_cards = MainActivity.getInstance().getCreditCards();
         debit_cards = MainActivity.getInstance().getDebitCards();
@@ -49,7 +48,7 @@ public class UpcomingPaymentActivity extends AppCompatActivity {
                     float sum = paylog_list.get(i).getSum();
                     String to_acc = paylog_list.get(i).getTo_account();
                     String to_name = paylog_list.get(i).getTo_name();
-                    event_string = (date + " Sum: -" + sum + " €\nTo: " + to_acc + ", " + to_name + "\n" + "\n");
+                    event_string = ("Id: " + id + "Date: " +date + " Sum: -" + sum + " €\nTo: " + to_acc + ", " + to_name + "\n" + "\n");
                     textView.append(event_string);
                 }
             }
