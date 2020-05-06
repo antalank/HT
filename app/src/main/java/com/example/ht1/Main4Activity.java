@@ -71,7 +71,7 @@ public class Main4Activity extends BaseActivity {
         //inflating the activity layout here
         View contentView = inflater.inflate(R.layout.activity_main4, null, false);
         mDrawer.addView(contentView, 0);
-
+        context = Main4Activity.this;
         ///setting the name of the bank to the activity
         System.out.println(bankNameSelection);
         textView4BankName = (TextView) findViewById(R.id.textView4BankName);
@@ -81,6 +81,9 @@ public class Main4Activity extends BaseActivity {
         account_event =  MainActivity.getInstance().getAccountEventlist();
         debit_accounts = MainActivity.getInstance().getDebitaccountlist();
         credit_accounts = MainActivity.getInstance().getCreditaccountlist();
+        paylog = MainActivity.getInstance().getPaylog();
+        debit_cards = MainActivity.getInstance().getDebitCards();
+        credit_cards = MainActivity.getInstance().getCreditCards();
         new LongRunningTask().execute();
     }
 

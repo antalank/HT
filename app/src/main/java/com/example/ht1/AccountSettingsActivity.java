@@ -36,9 +36,10 @@ public class AccountSettingsActivity extends AppCompatActivity implements Adapte
     int i = 0;
     String account;
     String PayLimit;
+    String CreditLimit;
 
     float paylimit;
-    float credit;
+    float creditlimit;
 
 
     @Override
@@ -114,8 +115,29 @@ public class AccountSettingsActivity extends AppCompatActivity implements Adapte
         }
     }
     public void CreditLimit(View view) {
-
-    //koodi puuttuu
+        for (String l : list) {
+            if (i == selection) {
+                account = list.get(i);
+            } i++;
+        }
+        CreditLimit = editTextCreditLimit.getText().toString();
+        System.out.println(CreditLimit);
+        if (CreditLimit == null || CreditLimit.isEmpty()) {
+            creditlimit = 0.0f;
+        } else {
+            creditlimit = Float.valueOf(creditlimit);
+        }
+        int i = 0;
+        for (Credit_account c_a : credit_accounts) {
+            if (account.equals(c_a.getAccountNumber())) {
+                c_a.setCredit(creditlimit);
+                textViewDown.setText("Creditlimit set to " + creditlimit);
+                i++;
+            }
+        }
+        if (i == 0) {
+            textViewDown.setText("Can't change credit limit");
+        }
 
 
 
