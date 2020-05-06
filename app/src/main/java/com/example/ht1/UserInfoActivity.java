@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import static com.example.ht1.Main2Activity.userIdSelection;
 
@@ -69,7 +70,7 @@ public class UserInfoActivity extends BaseActivity {
         dbAccess.close();
     }
 
-    public void setEnabledName(View v){
+    public void setEnabledName(View v) {
         EditText editText1 = findViewById(R.id.editName);
         editText1.setFocusableInTouchMode(true);
         editText1.setVisibility(View.VISIBLE);
@@ -86,37 +87,45 @@ public class UserInfoActivity extends BaseActivity {
         button2.setVisibility(View.VISIBLE);
     }
     public void setEnabledNumber(View v){
-        EditText editText3 = findViewById(R.id.editNumber);
-        editText3.setFocusableInTouchMode(true);
-        editText3.setVisibility(View.VISIBLE);
-        Button button3 = findViewById(R.id.save3);
-        button3.setFocusable(true);
-        button3.setVisibility(View.VISIBLE);
+            EditText editText3 = findViewById(R.id.editNumber);
+            editText3.setFocusableInTouchMode(true);
+            editText3.setVisibility(View.VISIBLE);
+            Button button3 = findViewById(R.id.save3);
+            button3.setFocusable(true);
+            button3.setVisibility(View.VISIBLE);
     }
 
     public void saveName(View v){
         String s;
         int id = userIdSelection;
-        //customers =  Main2Activity.getInstance().getCustomerlist();
-        s = newName.getText().toString();
-        nameText.setText("Name: " + s);
 
-        DB_Customer dbAccess = DB_Customer.getInstance(getApplicationContext());
-        dbAccess.open();
-        dbAccess.setName(id, s);
+        try {
 
-        EditText editText1 = findViewById(R.id.editName);
-        editText1.setFocusableInTouchMode(false);
-        editText1.setVisibility(View.INVISIBLE);
-        Button button1 = findViewById(R.id.save1);
-        button1.setFocusable(false);
-        button1.setVisibility(View.INVISIBLE);
+            //customers =  Main2Activity.getInstance().getCustomerlist();
+            s = newName.getText().toString();
+            nameText.setText("Name: " + s);
 
-        newName.setText(null);
+            DB_Customer dbAccess = DB_Customer.getInstance(getApplicationContext());
+            dbAccess.open();
+            dbAccess.setName(id, s);
+
+            EditText editText1 = findViewById(R.id.editName);
+            editText1.setFocusableInTouchMode(false);
+            editText1.setVisibility(View.INVISIBLE);
+            Button button1 = findViewById(R.id.save1);
+            button1.setFocusable(false);
+            button1.setVisibility(View.INVISIBLE);
+
+            newName.setText(null);
+        }catch (NullPointerException null_e){
+            Toast.makeText(getApplicationContext(), "Write name first!", Toast.LENGTH_SHORT).show();
+        }
     }
     public void saveAddress(View v){
         int id = userIdSelection;
         //customers =  Main2Activity.getInstance().getCustomerlist();
+
+        try {
         currentString = newAddress.getText().toString();
         String[] separated = currentString.split(",");
         String r = separated[0];
@@ -142,11 +151,18 @@ public class UserInfoActivity extends BaseActivity {
         button2.setVisibility(View.INVISIBLE);
 
         newAddress.setText(null);
+        }catch (NullPointerException null_e){
+            Toast.makeText(getApplicationContext(), "Write name first!", Toast.LENGTH_SHORT).show();
+        }catch (IllegalStateException illegal_e){
+            Toast.makeText(getApplicationContext(), "Write name first!", Toast.LENGTH_SHORT).show();
+        }
     }
     public void saveNumber(View v){
         String s;
         int id = userIdSelection;
         //customers =  Main2Activity.getInstance().getCustomerlist();
+        try {
+
         s = newNumber.getText().toString();
         numberText.setText("Phone number: " + s);
 
@@ -162,6 +178,9 @@ public class UserInfoActivity extends BaseActivity {
         button3.setVisibility(View.INVISIBLE);
 
         newNumber.setText(null);
+        }catch (NumberFormatException empty_e) {
+            Toast.makeText(getApplicationContext(), "Set postal code first!", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

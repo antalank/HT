@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,7 +20,6 @@ import static com.example.ht1.Main2Activity.userNameSelection;
 public class Main3Activity extends AppCompatActivity {
     TextView textView1;
     TextView textView5;
-    TextView textViewError;
     EditText editText1;
     String text = "";
 
@@ -53,8 +53,6 @@ public class Main3Activity extends AppCompatActivity {
         textView1 = findViewById(R.id.textViewOtsikko);
         textView5 = findViewById(R.id.textView5);
         textView5.setText("Import keycode list number");
-        textViewError = findViewById(R.id.textViewError);
-        textViewError.setText("");
         editText1 = findViewById(R.id.editText1);
 
         randomNumber();
@@ -63,9 +61,11 @@ public class Main3Activity extends AppCompatActivity {
     }
     //public static Main3Activity getInstance() { return instance; }
 
+
+
     public void randomNumber() {
         double rand = Math.random();
-        rand = rand * 999999 + 100000;
+        rand = 100000 + rand * 900000;
         int IntRand = (int) rand;
         System.out.println(IntRand);
 
@@ -163,7 +163,8 @@ public class Main3Activity extends AppCompatActivity {
             Intent intent = new Intent(Main3Activity.this, Main4Activity.class);
             startActivity(intent);
         } else if (number != text) {
-            textViewError.setText("Wrong number!, try again");
+            Toast.makeText(getApplicationContext(), "Wrong number! Try again", Toast.LENGTH_SHORT).show();
+
         }
     }
     //public ArrayList<PayLog> getPaylog() { return paylog; }
