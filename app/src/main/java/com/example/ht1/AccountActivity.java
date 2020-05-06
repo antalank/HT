@@ -156,4 +156,9 @@ public class AccountActivity extends BaseActivity implements AdapterView.OnItemS
         Intent intent = new Intent(AccountActivity.this, AddAccountActivity.class);
         startActivity(intent);
     }
+
+    public void changeAccountSettings(View v) {
+        Intent intent = new Intent(AccountActivity.this, AccountSettingsActivity.class);
+        startActivity(intent);
+    }
 }

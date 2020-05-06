@@ -27,7 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="654dp" />
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="660dp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -46,6 +47,7 @@
                 android:layout_height="397dp"
                 android:text="TextView"
                 android:textSize="18sp" />
+
         </LinearLayout>
     </ScrollView>
 
@@ -53,23 +55,14 @@
         android:id="@+id/showData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="543dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="283dp"
+        android:layout_marginBottom="537dp"
         android:onClick="showData"
         android:text="Show events" />
-
-    <Button
-        android:id="@+id/buttonWrite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="133dp"
-        android:layout_marginBottom="74dp"
-        android:onClick="writeDatatoFile"
-        android:text="Write events to file" />
 
     <TextView
         android:id="@+id/textViewBalance"
@@ -90,22 +83,44 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="346dp"
-        android:layout_marginBottom="591dp"
+        android:layout_marginStart="94dp"
+        android:layout_marginEnd="258dp"
+        android:layout_marginBottom="620dp"
         android:text="TextView" />
 
     <Button
         android:id="@+id/button16"
-        android:layout_width="180dp"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="103dp"
-        android:layout_marginEnd="128dp"
-        android:layout_marginBottom="14dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="113dp"
+        android:layout_marginEnd="117dp"
+        android:layout_marginBottom="11dp"
         android:onClick="addNewActivity"
         android:text="Create new account" />
+
+    <Button
+        android:id="@+id/buttonWrite"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="177dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="539dp"
+        android:text="Write events to file" />
+
+    <Button
+        android:id="@+id/button20"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="66dp"
+        android:onClick="changeAccountSettings"
+        android:text="Change account settings" />
 
 </RelativeLayout>
