@@ -125,7 +125,7 @@ public class AccountSettingsActivity extends AppCompatActivity implements Adapte
         if (CreditLimit == null || CreditLimit.isEmpty()) {
             creditlimit = 0.0f;
         } else {
-            creditlimit = Float.valueOf(creditlimit);
+            creditlimit = Float.valueOf(CreditLimit);
         }
         int i = 0;
         for (Credit_account c_a : credit_accounts) {
@@ -138,15 +138,6 @@ public class AccountSettingsActivity extends AppCompatActivity implements Adapte
         if (i == 0) {
             textViewDown.setText("Can't change credit limit");
         }
-
-
-
-
-
-
-
-
-
     }
 
     public void buttonBack(View view) {
