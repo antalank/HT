@@ -145,8 +145,8 @@ public class AddCardActivity extends AppCompatActivity {
                         } else {
                             Switch sw;
                             sw = (Switch) findViewById(R.id.switch2);
-                            if (sw.isChecked()) {    //is credit card
 
+                            if (sw.isChecked()) {    //is credit card
                                 for (int i = 0; i < credit_accounts.size(); i++) {
                                     if (account.equals(credit_accounts.get(i).getAccountNumber())) {
                                         credit_cards.add(new Credit_card(credit_accounts.get(i).getAccountNumber(), credit_accounts.get(i).getBalance(), credit_accounts.get(i).getUserID(),
@@ -155,20 +155,19 @@ public class AddCardActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), "New card created", Toast.LENGTH_SHORT).show();
                                     }
                                 }
+
                             } else {    //is debit card
                                 for (int i = 0; i < debit_accounts.size(); i++) {
                                     if (account.equals(debit_accounts.get(i).getAccountNumber())) {
-                                        debit_cards.add(new Debit_card(credit_accounts.get(i).getAccountNumber(), credit_accounts.get(i).getBalance(), credit_accounts.get(i).getUserID(),
-                                                credit_accounts.get(i).getOpenDate(), credit_accounts.get(i).getPayLim(),
+                                        debit_cards.add(new Debit_card(debit_accounts.get(i).getAccountNumber(), debit_accounts.get(i).getBalance(), debit_accounts.get(i).getUserID(),
+                                                debit_accounts.get(i).getOpenDate(), debit_accounts.get(i).getPayLim(),
                                                 use_limit, draw_limit, area, card_num));
                                         Toast.makeText(getApplicationContext(), "New card created", Toast.LENGTH_SHORT).show();
-
                                     }
                                 }
                             }
                         }
                     } catch (NullPointerException null_e) {
-                        System.out.println("TOIMIIKO4");
                         Toast.makeText(getApplicationContext(), "Select account first", Toast.LENGTH_SHORT).show();
                     }
                 }catch (NullPointerException null_e) {
@@ -176,7 +175,7 @@ public class AddCardActivity extends AppCompatActivity {
                 }catch (NumberFormatException numb_e) {
                 Toast.makeText(getApplicationContext(), "Set all limits first", Toast.LENGTH_SHORT).show();
             }
-    }
+        }
 
     });
     }

@@ -8,11 +8,11 @@ public abstract class Account {
         float pay_lim;
 
         public Account(String a, float b, int c, String d, float e) {
-            acc_num = a;
-            balance = b;
-            user_id = c;
-            open_date = d;
-            pay_lim = e;
+            this.acc_num = a;
+            this.balance = b;
+            this.user_id = c;
+            this.open_date = d;
+            this.pay_lim = e;
         }
         //methods of class Account->
 
@@ -55,7 +55,7 @@ public abstract class Account {
 
         public Credit_account(String a, float b, int c, String d, float e, float f) {
             super(a,b,c,d,e);
-            credit = f;
+            this.credit = f;
         }
         //methods of class Credit account->
 
@@ -77,10 +77,10 @@ public abstract class Account {
 
         public Debit_card (String a, float b, int c, String d, float e, float g, float h, String i, String j) {
             super(a,b,c,d,e);
-            use_lim = g;
-            draw_lim = h;
-            area = i;
-            card_num = j;
+            this.use_lim = g;
+            this.draw_lim = h;
+            this.area = i;
+            this.card_num = j;
         }
 
         //methods of class debit card->
@@ -124,10 +124,10 @@ public abstract class Account {
 
         public Credit_card (String a, float b, int c, String d, float e, float f, float g, float h, String i, String j) {
             super(a,b,c,d,e,f);
-            use_lim = g;
-            draw_lim = h;
-            area = i;
-            card_num = j;
+            this.use_lim = g;
+            this.draw_lim = h;
+            this.area = i;
+            this.card_num = j;
         }
 
         //methods of class credit card->

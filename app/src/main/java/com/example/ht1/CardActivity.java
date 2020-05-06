@@ -63,7 +63,7 @@ public class CardActivity extends BaseActivity {
 
         debit_cards_list.add("Show debit cards");
         for (int i = 0; i < debit_cards.size(); i++) {
-            if (userId == credit_cards.get(i).getUserID()) {
+            if (userId == debit_cards.get(i).getUserID()) {
                 String card_num = debit_cards.get(i).getCardNum();
                 debit_cards_list.add(card_num);
             }
