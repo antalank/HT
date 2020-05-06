@@ -46,6 +46,8 @@ public class Main3Activity extends AppCompatActivity {
     ArrayList<AccountEvent> account_event = new ArrayList<>();
     ArrayList<Debit_account> debit_accounts = new ArrayList<>();
     ArrayList<Credit_account> credit_accounts = new ArrayList<>();
+    ArrayList<PayLog> paylog = new ArrayList<>();
+    ArrayList<Integer> remove_PayLog = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +61,6 @@ public class Main3Activity extends AppCompatActivity {
         instance = this;
 
     }
-    //public static Main3Activity getInstance() { return instance; }
-
-
 
     public void randomNumber() {
         double rand = Math.random();
@@ -73,13 +72,14 @@ public class Main3Activity extends AppCompatActivity {
         textView1.setText(text);
     }
 
-    /*public void execute() {
+    public void execute() {
         for (PayLog p : paylog) {
             System.out.println(p.getIde() + " " + p.getDate_() + " " +  p.getSum() + " " +  p.getFrom_account() + " " +  p.getFrom_name() + " " +  p.getTo_account() + " " +  p.getTo_name());
         }
         account_event =  MainActivity.getInstance().getAccountEventlist();
         debit_accounts = MainActivity.getInstance().getDebitaccountlist();
         credit_accounts = MainActivity.getInstance().getCreditaccountlist();
+        paylog = MainActivity.getInstance().getPaylog();
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat(("dd-MM-yyyy"));
@@ -87,6 +87,7 @@ public class Main3Activity extends AppCompatActivity {
         String[] separated = formattedDate.split("-");
         dayString = separated[0];
         monthString = separated[1];
+        /*
         if (monthString.equals("01")) {
             monthString = "1";
         } else if (monthString.equals("02")) {
@@ -106,12 +107,16 @@ public class Main3Activity extends AppCompatActivity {
         } else if (monthString.equals("09")) {
             monthString = "9";
         }
+        */
+
         yearString = separated[2];
         dateString = (yearString + monthString + dayString);
         dateInt = Integer.parseInt(dateString);
         System.out.println(dateInt);
         System.out.println("222222222222222222222222222222222222");
         // pay-method here
+        int payLogRemove = 0;
+
         for (PayLog p : paylog) {
             System.out.println(p.getDate_());
             if (dateInt >= p.getDate_()) {
@@ -126,40 +131,55 @@ public class Main3Activity extends AppCompatActivity {
                     to_account = p.getTo_account();
                     to_name = p.getTo_name();
                     a++;
+
+
+                    //Pay
+                    date_commit = (dayString + "." + monthString + "." + yearString);
+                    account_event.add(new AccountEvent(1, from_account, date_commit, -(sum), to_account, to_name));
+                    account_event.add(new AccountEvent(2, to_account, date_commit, sum, from_account, userNameSelection));
+
+                    for (Debit_account d_a : debit_accounts) {
+                        if (from_account.equals(d_a.getAccountNumber())) {
+                            d_a.pay(sum);
+                        }
+                    }
+                    for (Credit_account c_a : credit_accounts) {
+                        if (from_account.equals(c_a.getAccountNumber())) {
+                            c_a.pay(sum);
+                        }
+                    }
+                    for (Debit_account d_a : debit_accounts) {
+                        if (d_a.getAccountNumber().equals(to_account)) {
+                            d_a.addMoney(sum);
+                        }
+                    }
+                    for (Credit_account c_a : credit_accounts) {
+                        if (c_a.getAccountNumber().equals(to_account)) {
+                            c_a.addMoney(sum);
+                        }
+                    }
+                    remove_PayLog.add(payLogRemove);
                 }
-            }
+            } payLogRemove++;
         }
         if (a > 0) {
-            date_commit = (dayString + "." + monthString + "." + yearString);
-            account_event.add(new AccountEvent(1, from_account, date_commit, -(sum), to_account, to_name));
-            account_event.add(new AccountEvent(2, to_account, date_commit, sum, from_account, userNameSelection));
+            //Remove event from paylog
+            for (Integer i : remove_PayLog) {
+                System.out.println("Remove: " + i);
+                paylog.remove(i);
+            }
+            for (PayLog p : paylog) {
 
-            for (Debit_account d_a : debit_accounts) {
-                if (from_account.equals(d_a.getAccountNumber())) {
-                    d_a.pay(sum);
-                }
             }
-            for (Credit_account c_a : credit_accounts) {
-                if (from_account.equals(c_a.getAccountNumber())) {
-                    c_a.pay(sum);
-                }
-            }
-            for (Debit_account d_a : debit_accounts) {
-                if (d_a.getAccountNumber().equals(to_account)) {
-                    d_a.addMoney(sum);
-                }
-            }
-            for (Credit_account c_a : credit_accounts) {
-                if (c_a.getAccountNumber().equals(to_account)) {
-                    c_a.addMoney(sum);
-                }
+            for (PayLog p : paylog) {
+                System.out.println(p.getIde() + " " + p.getDate_() + " " + p.getTo_name());
             }
         }
-    }*/
+    }
     public void loadActivity3(View v){
         String number = editText1.getText().toString();
         if (number.equals(text)) {
-            //execute();
+            execute();
             Intent intent = new Intent(Main3Activity.this, Main4Activity.class);
             startActivity(intent);
         } else if (number != text) {
@@ -167,5 +187,4 @@ public class Main3Activity extends AppCompatActivity {
 
         }
     }
-    //public ArrayList<PayLog> getPaylog() { return paylog; }
 }
