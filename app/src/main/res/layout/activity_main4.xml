@@ -28,7 +28,6 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:singleLine="false"
-                android:text="** name of the Bank**"
                 android:textSize="25dp" />
 
             <TextView
@@ -40,7 +39,7 @@
                 android:gravity="center"
                 android:includeFontPadding="false"
                 android:singleLine="false"
-                android:text="**Choose activity from menu**"
+                android:text="Choose activity from menu in the side bar"
                 android:textSize="16dp" />
 
             <Button
