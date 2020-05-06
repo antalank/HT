@@ -9,13 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import static com.example.ht1.CardActivity.cardTypeSelection;
 import static com.example.ht1.Main2Activity.userIdSelection;
 
 
 public class CardSettingsActivity extends AppCompatActivity {
-    //TODO muista credit- ja debit-hommelit
 
     Spinner spinner;
     EditText draw;
@@ -91,22 +92,30 @@ public class CardSettingsActivity extends AppCompatActivity {
         check_draw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String S_draw_lim = draw.getText().toString();
-                float draw_lim = Float.parseFloat(S_draw_lim);
-                draw_view.setText("Draw limit: " + draw_lim);
 
-                if (card_type.equals("Debit")){
-                    for (int i = 0; i < debit_cards.size(); i++) {
-                        if (userId == debit_cards.get(i).getUserID()) {
-                            debit_cards.get(i).setDrawLimit(draw_lim);
+                //making sure that the user has written the info
+                try {
+                    String S_draw_lim = draw.getText().toString();
+                    float draw_lim = Float.parseFloat(S_draw_lim);
+                    draw_view.setText("Draw limit: " + draw_lim);
+
+                    if (card_type.equals("Debit")) {
+                        for (int i = 0; i < debit_cards.size(); i++) {
+                            if (userId == debit_cards.get(i).getUserID()) {
+                                debit_cards.get(i).setDrawLimit(draw_lim);
+                            }
+                        }
+                    } else if (card_type.equals("Credit")) {
+                        for (int i = 0; i < credit_cards.size(); i++) {
+                            if (userId == credit_cards.get(i).getUserID()) {
+                                credit_cards.get(i).setDrawLimit(draw_lim);
+                            }
                         }
                     }
-                } else if(card_type.equals("Credit")){
-                    for (int i = 0; i < credit_cards.size(); i++) {
-                        if (userId == credit_cards.get(i).getUserID()) {
-                            credit_cards.get(i).setDrawLimit(draw_lim);
-                        }
-                    }
+                }catch (NullPointerException null_e) {
+                    Toast.makeText(getApplicationContext(), "Set all limits first", Toast.LENGTH_SHORT).show();
+                }catch (NumberFormatException numb_e) {
+                    Toast.makeText(getApplicationContext(), "Set all limits first", Toast.LENGTH_SHORT).show();
                 }
 
                 }
@@ -115,6 +124,9 @@ public class CardSettingsActivity extends AppCompatActivity {
         check_use.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //making sure that the user has written the info
+                try {
                 String S_use_lim = use.getText().toString();
                 float use_lim = Float.parseFloat(S_use_lim);
                 use_view.setText("Use limit: " + use_lim);
@@ -132,6 +144,11 @@ public class CardSettingsActivity extends AppCompatActivity {
                         }
                     }
                 }
+                }catch (NullPointerException null_e) {
+                    Toast.makeText(getApplicationContext(), "Set all limits first", Toast.LENGTH_SHORT).show();
+                }catch (NumberFormatException numb_e) {
+                    Toast.makeText(getApplicationContext(), "Set all limits first", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -146,26 +163,28 @@ public class CardSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String area = spinner.getSelectedItem().toString();
-                if (card_type.equals("Debit")){
-                    for (int i = 0; i < debit_cards.size(); i++) {
-                        if (userId == debit_cards.get(i).getUserID()) {
-                            debit_cards.get(i).setArea(area);
-                            area_view.setText("Working area: " + area);
+                if (area.equals("Select area")){
+                    Toast.makeText(getApplicationContext(), "Select area first", Toast.LENGTH_SHORT).show();
+                }else {
+                    if (card_type.equals("Debit")) {
+                        for (int i = 0; i < debit_cards.size(); i++) {
+                            if (userId == debit_cards.get(i).getUserID()) {
+                                debit_cards.get(i).setArea(area);
+                                area_view.setText("Working area: " + area);
 
+                            }
                         }
-                    }
-                } else if(card_type.equals("Credit")){
-                    for (int i = 0; i < credit_cards.size(); i++) {
-                        if (userId == credit_cards.get(i).getUserID()) {
-                            credit_cards.get(i).setArea(area);
-                            area_view.setText("Working area: " + area);
+                    } else if (card_type.equals("Credit")) {
+                        for (int i = 0; i < credit_cards.size(); i++) {
+                            if (userId == credit_cards.get(i).getUserID()) {
+                                credit_cards.get(i).setArea(area);
+                                area_view.setText("Working area: " + area);
+                            }
                         }
                     }
                 }
             }
         });
-
-
         ////////////////////////////////////////////////////////////////////////////////////////////////
     }
 }

@@ -120,7 +120,7 @@ public class CardActivity extends BaseActivity {
                                 for (int i = 0; i < credit_cards.size(); i++) {
                                     if (card == credit_cards.get(i).getCardNum()) {
                                         credit_cards.remove(i);
-                                        credit_cards_list.remove(i);
+                                        credit_cards_list.remove(i+1);
                                         Toast.makeText(getApplicationContext(), "Card has been amortised", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -143,7 +143,9 @@ public class CardActivity extends BaseActivity {
                                 for (int i = 0; i < debit_cards.size(); i++) {
                                     if (card == debit_cards.get(i).getCardNum()) {
                                         debit_cards.remove(i);
-                                        debit_cards_list.remove(i);
+                                        debit_cards_list.remove(i+1);
+                                        Toast.makeText(getApplicationContext(), "Card has been amortised", Toast.LENGTH_SHORT).show();
+
                                     }
                                 }
                             }
