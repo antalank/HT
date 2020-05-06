@@ -23,7 +23,7 @@
                 android:id="@+id/textView4BankName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="90dp"
+                android:layout_marginLeft="130dp"
                 android:layout_marginTop="160dp"
                 android:gravity="center"
                 android:includeFontPadding="false"
@@ -34,7 +34,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="64dp"
                 android:layout_marginTop="220dp"
                 android:gravity="center"
                 android:includeFontPadding="false"
@@ -44,8 +44,10 @@
 
             <Button
                 android:id="@+id/buttonLogOut"
-                android:layout_width="155dp"
-                android:layout_height="123dp"
+                android:layout_width="100dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="151dp"
+                android:layout_marginTop="600dp"
                 android:onClick="LogOut"
                 android:text="Log Out" />
 
