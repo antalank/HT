@@ -5,8 +5,8 @@ public class Salt {
     int user;
 
     public Salt(String s, int u){
-        String salt = s;
-        int user = u;
+        this.salt = s;
+        this.user = u;
     }
 
     public int getUser(){

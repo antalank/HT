@@ -152,6 +152,6 @@ public class DB_Customer {
     }
 
     public ArrayList getSaltList(){
-        return salt_list; //TODO Yritä
+        return salt_list;
     }
 }

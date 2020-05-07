@@ -55,6 +55,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         instance = this;
 
+        DB_Customer dbAcc = DB_Customer.getInstance(getApplicationContext());
+        dbAcc.open();
+        dbAcc.changePassword(345123, "346Eyz01!uu3");
+        dbAcc.changePassword(535477, "346Eyz01!uu5");
+        dbAcc.changePassword(566789, "kissa");
+        dbAcc.changePassword(612009, "346Eyz01!uu6");
+        dbAcc.changePassword(998477, "346Eyz01!uu9");
+        dbAcc.close();
     }
     public static MainActivity getInstance() {
         return instance;
