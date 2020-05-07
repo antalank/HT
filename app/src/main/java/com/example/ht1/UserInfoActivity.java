@@ -21,8 +21,6 @@ public class UserInfoActivity extends BaseActivity {
     EditText newNumber;
     String currentString;
 
-   // ArrayList<Customer> customers = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,21 +36,6 @@ public class UserInfoActivity extends BaseActivity {
         newName = findViewById(R.id.editName);
         newAddress = findViewById(R.id.editAddress);
         newNumber = findViewById(R.id.editNumber);
-
-        //customers =  Main2Activity.getInstance().getCustomerlist();
-
-        /*for (Customer customer : customers) {
-            if (id == customer.getUserId()) {
-                name = customer.getName();
-                address = customer.getAddress();
-                number = customer.getNumber();
-                postal_code = customer.getPostalCode();
-            }
-        }
-
-        nameText.setText("Name: " + name);
-        addressText.setText("Address: " + postal_code + " " + address);
-        numberText.setText("Phone number: " + number);*/
 
         DB_Customer dbAccess = DB_Customer.getInstance(getApplicationContext());
         dbAccess.open();
@@ -100,8 +83,6 @@ public class UserInfoActivity extends BaseActivity {
         int id = userIdSelection;
 
         try {
-
-            //customers =  Main2Activity.getInstance().getCustomerlist();
             s = newName.getText().toString();
             nameText.setText("Name: " + s);
 
@@ -123,38 +104,34 @@ public class UserInfoActivity extends BaseActivity {
     }
     public void saveAddress(View v){
         int id = userIdSelection;
-        //customers =  Main2Activity.getInstance().getCustomerlist();
 
-        currentString = newAddress.getText().toString();
-        String[] separated = currentString.split(",");
-        String r = separated[0];
-        String t = separated[1];
-        addressText.setText("Address: " + r + " " + t);
-        /*for (Customer c : customers) {
-            if (id == c.getUserId()) {
-                c.setPostalCode(r);
-                c.setAddress(t);
-            }
-        }*/
+        try {
+            currentString = newAddress.getText().toString();
+            String[] separated = currentString.split(",");
+            String r = separated[0];
+            String t = separated[1];
+            addressText.setText("Address: " + r + " " + t);
 
-        DB_Customer dbAccess = DB_Customer.getInstance(getApplicationContext());
-        dbAccess.open();
-        dbAccess.setPostalCode(id, r);
-        dbAccess.setAddress(id, t);
+            DB_Customer dbAccess = DB_Customer.getInstance(getApplicationContext());
+            dbAccess.open();
+            dbAccess.setPostalCode(id, r);
+            dbAccess.setAddress(id, t);
 
-        EditText editText2 = findViewById(R.id.editAddress);
-        editText2.setFocusableInTouchMode(false);
-        editText2.setVisibility(View.INVISIBLE);
-        Button button2 = findViewById(R.id.save2);
-        button2.setFocusable(false);
-        button2.setVisibility(View.INVISIBLE);
+            EditText editText2 = findViewById(R.id.editAddress);
+            editText2.setFocusableInTouchMode(false);
+            editText2.setVisibility(View.INVISIBLE);
+            Button button2 = findViewById(R.id.save2);
+            button2.setFocusable(false);
+            button2.setVisibility(View.INVISIBLE);
 
-        newAddress.setText(null);
+            newAddress.setText(null);
+        } catch (NullPointerException null_e){
+            Toast.makeText(getApplicationContext(), "Write name first!", Toast.LENGTH_SHORT).show();
+        }
     }
     public void saveNumber(View v){
         String s;
         int id = userIdSelection;
-        //customers =  Main2Activity.getInstance().getCustomerlist();
         try {
 
         s = newNumber.getText().toString();
@@ -173,7 +150,7 @@ public class UserInfoActivity extends BaseActivity {
 
         newNumber.setText(null);
         }catch (NumberFormatException empty_e) {
-            Toast.makeText(getApplicationContext(), "Set postal code first!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Set postal number first!", Toast.LENGTH_SHORT).show();
         }
     }
 

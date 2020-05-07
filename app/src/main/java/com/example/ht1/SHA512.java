@@ -7,7 +7,7 @@ public class SHA512 {
 
     public static String getSHA512(String toHash, String salt)
     {
-        for (int i = 0; i < 100000; i++) {
+        for (int i = 0; i < 1000; i++) {
             toHash = SHA512once(toHash+salt);
         }
         return SHA512once(toHash);
@@ -42,6 +42,6 @@ public class SHA512 {
     }
 
     public static String salt(String toSalt, String salt) {
-        return "";
+        return toSalt+salt;
     }
 }

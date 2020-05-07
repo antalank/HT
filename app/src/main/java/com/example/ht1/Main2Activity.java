@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 import static com.example.ht1.MainActivity.bankBicSelection;
 import static com.example.ht1.SHA512.getSHA512;
-import static com.example.ht1.SHA512.salt;
 
 
 public class Main2Activity extends AppCompatActivity {
@@ -69,12 +68,14 @@ public class Main2Activity extends AppCompatActivity {
             salt_listt = dbAccess.getSaltList();
             password = dbAccess.getPassword(gUser);
             bic = dbAccess.getBIC(gUser);
+
             for(int i = 0; i < salt_listt.size(); i++){
+                System.out.println(gUser);
+                System.out.println(salt_listt.size());
                 if(gUser == salt_listt.get(i).getUser()){
                     // take the salt connected to the user id and use it to hash the password that is given by the user
                     String currSalt = salt_listt.get(i).getSalt();
-                    String sal = salt(gPassword, currSalt);
-                    String pass = getSHA512(gPassword, sal);
+                    String pass = getSHA512(gPassword, currSalt);
                     // compare the password from database to the one given by user
                     if (pass.equals(password) && bankBicSelection.equals(bic)) {
                         apply++;
