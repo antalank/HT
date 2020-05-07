@@ -191,6 +191,7 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
         }
     }
     public void payDueFreq() {
+        //Paying many future events to the selected due date
         for (String l : list) {
             if (i == selection) {
                 account = list.get(i);
@@ -204,11 +205,13 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
         sum_String = editTextSum.getText().toString();
         sum = Float.parseFloat(sum_String);
         name = editTextName.getText().toString();
+
         // sum, account_num, time_date
         int lenght = account_num.length();
         if (lenght < 18) {
             textViewPay.setText("No such account");
         } else if (lenght >= 18) {
+            //Checking if there is enough account balance and paylimit to the payevents
             for (Debit_account d_a : debit_accounts) {
                 if (account.equals(d_a.getAccountNumber())) {
                     payLim = d_a.getPayLim();
@@ -293,6 +296,7 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
                         }
                         date_Freq_String = yDate + mDate + dDate;
                         dateInt = Integer.parseInt(date_Freq_String);
+                        //Setting due dates
                         if ((monthInt + 1) >= 13) {
                             yearInt++;
                             monthInt = 0;
@@ -329,6 +333,7 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
             textViewPay.setText("No such account");
         } else if (lenght >= 18) {
             for (Debit_account d_a : debit_accounts) {
+                //Cheking if there is enough account balance and paylimit
                 if (account.equals(d_a.getAccountNumber())) {
                     payLim = d_a.getPayLim();
                     bal = d_a.getBalance();
@@ -369,7 +374,7 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
         }
     }
     public void payFreq() {
-
+        //Paying many times (1-12 times)
         freq_String = editTextFreq.getText().toString();
         freq_Int = Integer.parseInt(freq_String);
 
@@ -379,7 +384,9 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
             Toast.makeText(getApplicationContext(), "Only possible to make 1-12 automatic account payments.", Toast.LENGTH_SHORT).show();
 
         } else if (freq_Int < 13 && freq_Int > 0) {
+            //Paying 1 time normally
             payNormal();
+            //Seting datetime to this date
             Date c = Calendar.getInstance().getTime();
             SimpleDateFormat df = new SimpleDateFormat(("dd-MM-yyyy"));
             String formattedDate = df.format(c);
@@ -419,6 +426,7 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
             for (i = 0; i < freq_Int; i++) {
                 String yDate = Integer.toString(yearIntF);
                 String mDate = Integer.toString(monthIntF);
+                //Change all months and days to two-lenght strings
                 if (mDate.equals("1")) {
                     mDate = "01";
                 } else if (mDate.equals("2")) {
@@ -463,6 +471,7 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
                 if ((monthIntF + 1) >= 13) {
                     yearIntF++;
                     monthIntF = 0;
+                    //Adding future accountevents to PayLog-arraylist
                     paylog.add(new PayLog(userIdSelection, dateInt, sum, account, userNameSelection, account_num, name));
                     monthIntF++;
                     System.out.println("DATE:::::::::::::::::::::::::::: " + dateInt);
@@ -490,13 +499,18 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
 
         account_num = editTextAccountNumber.getText().toString();
         sum_String = editTextSum.getText().toString();
-        sum = Float.parseFloat(sum_String);
+        try {
+            sum = Float.parseFloat(sum_String);
+        }
+        finally { }
         name = editTextName.getText().toString();
+
         // sum, account_num, time_date
         int lenght = account_num.length();
         if (lenght < 18) {
             textViewPay.setText("No such account");
         } else if (lenght >= 18) {
+            //Checking if account balance and paylimit are high enough
             for (Debit_account d_a : debit_accounts) {
                 if (account.equals(d_a.getAccountNumber())) {
                     payLim = d_a.getPayLim();
@@ -529,6 +543,7 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
             } else if (a == 0 && b == 0) {
                 textViewPay.setText("Amount is larger than paylimit");
             } else if (a > 0) {
+                //If there is an account in database, money will be add to the that account
                 for (Debit_account d_a : debit_accounts) {
                     if (d_a.getAccountNumber().equals(account_num)) {
                         d_a.addMoney(sum);
@@ -543,7 +558,6 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
                 account_event.add(new AccountEvent(id_orginal + 1, account, time_date, -(sum), account_num, name));
                 account_event.add(new AccountEvent(id_orginal + 2, account_num, time_date, sum, account, userNameSelection));
                 Toast.makeText(getApplicationContext(), "Payment succesfull", Toast.LENGTH_SHORT).show();
-
             }
         }
     }

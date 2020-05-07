@@ -95,12 +95,13 @@ public class AccountSettingsActivity extends AppCompatActivity implements Adapte
         }
         PayLimit = editTextPayLimit.getText().toString();
         System.out.println(PayLimit);
+        //Cheking possible errors
         if (PayLimit == null || PayLimit.isEmpty()) {
             paylimit = 0.0f;
         } else {
             paylimit = Float.valueOf(PayLimit);
         }
-
+        //Seting paylimit
         for (Debit_account d_a : debit_accounts) {
             if (account.equals(d_a.getAccountNumber())) {
                 d_a.setPayLim(paylimit);
@@ -123,12 +124,14 @@ public class AccountSettingsActivity extends AppCompatActivity implements Adapte
         }
         CreditLimit = editTextCreditLimit.getText().toString();
         System.out.println(CreditLimit);
+        //Cheking possible errors
         if (CreditLimit == null || CreditLimit.isEmpty()) {
             creditlimit = 0.0f;
         } else {
             creditlimit = Float.valueOf(CreditLimit);
         }
         int i = 0;
+        //Set paylimit
         for (Credit_account c_a : credit_accounts) {
             if (account.equals(c_a.getAccountNumber())) {
                 c_a.setCredit(creditlimit);

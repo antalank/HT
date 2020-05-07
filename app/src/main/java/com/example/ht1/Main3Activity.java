@@ -48,7 +48,6 @@ public class Main3Activity extends AppCompatActivity {
     ArrayList<Debit_account> debit_accounts = new ArrayList<>();
     ArrayList<Credit_account> credit_accounts = new ArrayList<>();
     ArrayList<PayLog> paylog = new ArrayList<>();
-    ArrayList<Integer> remove_PayLog = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,27 +88,6 @@ public class Main3Activity extends AppCompatActivity {
         String[] separated = formattedDate.split("-");
         dayString = separated[0];
         monthString = separated[1];
-        /*
-        if (monthString.equals("01")) {
-            monthString = "1";
-        } else if (monthString.equals("02")) {
-            monthString = "2";
-        } else if (monthString.equals("03")) {
-            monthString = "3";
-        } else if (monthString.equals("04")) {
-            monthString = "4";
-        } else if (monthString.equals("05")) {
-            monthString = "5";
-        } else if (monthString.equals("06")) {
-            monthString = "6";
-        } else if (monthString.equals("07")) {
-            monthString = "7";
-        } else if (monthString.equals("08")) {
-            monthString = "8";
-        } else if (monthString.equals("09")) {
-            monthString = "9";
-        }
-        */
         yearString = separated[2];
         dateString = (yearString + monthString + dayString);
         dateInt = Integer.parseInt(dateString);
