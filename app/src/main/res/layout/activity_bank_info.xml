@@ -13,8 +13,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="173dp"
-        android:layout_marginTop="147dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="146dp"
         android:text="TextView" />
 
     <TextView
@@ -24,8 +24,8 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="265dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginTop="219dp"
         android:text="TextView" />
 
     <TextView
@@ -35,7 +35,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="176dp"
-        android:layout_marginBottom="322dp"
+        android:layout_marginStart="71dp"
+        android:layout_marginBottom="462dp"
         android:text="TextView" />
 </RelativeLayout>

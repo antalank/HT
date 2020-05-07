@@ -63,7 +63,7 @@ public class CardActivity extends BaseActivity {
 
         debit_cards_list.add("Show debit cards");
         for (int i = 0; i < debit_cards.size(); i++) {
-            if (userId == credit_cards.get(i).getUserID()) {
+            if (userId == debit_cards.get(i).getUserID()) {
                 String card_num = debit_cards.get(i).getCardNum();
                 debit_cards_list.add(card_num);
             }
@@ -100,46 +100,67 @@ public class CardActivity extends BaseActivity {
 
         ///////Amortise card////////////////////////////////////////////////////////////////////////////////
 
-        //checking if the card is debit or credit card with switch
-        amortise.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Switch sw;
-                sw = (Switch) findViewById(R.id.switch1);
-                if (sw.isChecked()) {    //is credit card
+            //checking if the card is debit or credit card with switch
+            amortise.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Switch sw;
+                    sw = (Switch) findViewById(R.id.switch1);
+                    if (sw.isChecked()) {    //is credit card
 
-                    // saving the chosen item from spinner
-                    String card = spinner.getSelectedItem().toString();
-                    if (card.equals("Show credit cards")) {
-                        System.out.println("The header of spinner");
-                    } else {
-                        //deleting the card from all lists
-                        for (int i = 0; i < credit_cards.size(); i++) {
-                            if (card == credit_cards.get(i).getCardNum()) {
-                                credit_cards.remove(i);
-                                credit_cards_list.remove(i);
+                        //making sure that the user has chosen credit or debit card (Spinner has null object otherwise)
+                        try {
+                            // saving the chosen item from spinner
+                            String card = spinner.getSelectedItem().toString();
+
+                            if (card.equals("Show credit cards")) {
+                                Toast.makeText(getApplicationContext(), "Select card first", Toast.LENGTH_SHORT).show();
+                            } else {
+                                //deleting the card from all lists
+                                for (int i = 0; i < credit_cards.size(); i++) {
+                                    if (card == credit_cards.get(i).getCardNum()) {
+                                        credit_cards.remove(i);
+                                        credit_cards_list.remove(i+1);
+                                        Toast.makeText(getApplicationContext(), "Card has been amortised", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
                             }
+                        } catch (NullPointerException null_e) {
+                            Toast.makeText(getApplicationContext(), "Select card first", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                } else {     //is debit card
-                    // saving the chosen item from spinner
-                    String card = spinner.getSelectedItem().toString();
-                    if (card.equals("Show debit cards")) {
-                        System.out.println("The header of spinner");
-                    } else {
-                        //deleting the card from all lists
-                        for (int i = 0; i < debit_cards.size(); i++) {
-                            if (card == debit_cards.get(i).getCardNum()) {
-                                debit_cards.remove(i);
-                                debit_cards_list.remove(i);
+
+                    } else {     //is debit card
+
+                        //making sure that the user has chosen credit or debit card (Spinner has null object otherwise)
+                        try {
+
+                            // saving the chosen item from spinner
+                            String card = spinner.getSelectedItem().toString();
+                            if (card.equals("Show debit cards")) {
+                                Toast.makeText(getApplicationContext(), "Select card first", Toast.LENGTH_SHORT).show();
+                            } else {
+                                //deleting the card from all lists
+                                for (int i = 0; i < debit_cards.size(); i++) {
+                                    if (card == debit_cards.get(i).getCardNum()) {
+                                        debit_cards.remove(i);
+                                        debit_cards_list.remove(i+1);
+                                        Toast.makeText(getApplicationContext(), "Card has been amortised", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }
                             }
+                        } catch (NullPointerException null_e) {
+                            Toast.makeText(getApplicationContext(), "Select card first", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
-            }
-        });
+            });
+
     }
 
+    public static String getCardTypeSelection() {
+        return cardTypeSelection;
+    }
 
     public void addCard(View v){
         Intent intent = new Intent(CardActivity.this, AddCardActivity.class);
@@ -147,22 +168,40 @@ public class CardActivity extends BaseActivity {
     }
 
     public void changeSettings(View v){
-        Intent intent = new Intent(CardActivity.this, CardSettingsActivity.class);
-        startActivity(intent);
+        //making sure that the user has chosen credit or debit card (Spinner has null object otherwise)
+        try {
+            // making sure that the user has selected a card
+            String card = spinner.getSelectedItem().toString();
+            if (card.equals("Show credit cards")) {
+                Toast.makeText(getApplicationContext(), "Select card first", Toast.LENGTH_SHORT).show();
+            }else if (card.equals("Show debit cards")) {
+                Toast.makeText(getApplicationContext(), "Select card first", Toast.LENGTH_SHORT).show();
+            }else{
+                Intent intent = new Intent(CardActivity.this, CardSettingsActivity.class);
+                startActivity(intent);
+            }
+        }catch (NullPointerException null_e){
+            Toast.makeText(getApplicationContext(), "Select card first", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void withdrawMoney(View v) {
-
-        // making sure that the user has selected a card
-        String card = spinner.getSelectedItem().toString();
-        if (card.equals("Show credit cards")) {
-            Toast.makeText(getApplicationContext(), "Select card first!", Toast.LENGTH_SHORT).show();
-        } else if (card.equals("Show debit cards")) {
-            Toast.makeText(getApplicationContext(), "Select card first!", Toast.LENGTH_SHORT).show();
-        } else {
-            cardNumSelection = card;
-            Intent intent = new Intent(CardActivity.this, WithdrawActivity.class);
-            startActivity(intent);
+        //making sure that the user has chosen credit or debit card (Spinner has null object otherwise)
+        try {
+            // making sure that the user has selected a card
+            String card = spinner.getSelectedItem().toString();
+            if (card.equals("Show credit cards")) {
+                Toast.makeText(getApplicationContext(), "Select card first!", Toast.LENGTH_SHORT).show();
+            } else if (card.equals("Show debit cards")) {
+                Toast.makeText(getApplicationContext(), "Select card first!", Toast.LENGTH_SHORT).show();
+            } else {
+                cardNumSelection = card;
+                Intent intent = new Intent(CardActivity.this, WithdrawActivity.class);
+                startActivity(intent);
+            }
+        }catch (NullPointerException null_e){
+            Toast.makeText(getApplicationContext(), "Select card first", Toast.LENGTH_SHORT).show();
         }
     }
 }

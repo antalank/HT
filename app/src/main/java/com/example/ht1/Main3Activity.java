@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 
 import static com.example.ht1.Main2Activity.userIdSelection;
 import static com.example.ht1.Main2Activity.userNameSelection;
@@ -19,7 +21,6 @@ import static com.example.ht1.Main2Activity.userNameSelection;
 public class Main3Activity extends AppCompatActivity {
     TextView textView1;
     TextView textView5;
-    TextView textViewError;
     EditText editText1;
     String text = "";
 
@@ -46,6 +47,9 @@ public class Main3Activity extends AppCompatActivity {
     ArrayList<AccountEvent> account_event = new ArrayList<>();
     ArrayList<Debit_account> debit_accounts = new ArrayList<>();
     ArrayList<Credit_account> credit_accounts = new ArrayList<>();
+    ArrayList<PayLog> paylog = new ArrayList<>();
+    ArrayList<Integer> remove_PayLog = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,19 +57,16 @@ public class Main3Activity extends AppCompatActivity {
         textView1 = findViewById(R.id.textViewOtsikko);
         textView5 = findViewById(R.id.textView5);
         textView5.setText("Import keycode list number");
-        textViewError = findViewById(R.id.textViewError);
-        textViewError.setText("");
         editText1 = findViewById(R.id.editText1);
 
         randomNumber();
         instance = this;
 
     }
-    //public static Main3Activity getInstance() { return instance; }
 
     public void randomNumber() {
         double rand = Math.random();
-        rand = rand * 999999 + 100000;
+        rand = 100000 + rand * 900000;
         int IntRand = (int) rand;
         System.out.println(IntRand);
 
@@ -73,13 +74,14 @@ public class Main3Activity extends AppCompatActivity {
         textView1.setText(text);
     }
 
-    /*public void execute() {
+    public void execute() {
         for (PayLog p : paylog) {
             System.out.println(p.getIde() + " " + p.getDate_() + " " +  p.getSum() + " " +  p.getFrom_account() + " " +  p.getFrom_name() + " " +  p.getTo_account() + " " +  p.getTo_name());
         }
         account_event =  MainActivity.getInstance().getAccountEventlist();
         debit_accounts = MainActivity.getInstance().getDebitaccountlist();
         credit_accounts = MainActivity.getInstance().getCreditaccountlist();
+        paylog = MainActivity.getInstance().getPaylog();
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat(("dd-MM-yyyy"));
@@ -87,6 +89,7 @@ public class Main3Activity extends AppCompatActivity {
         String[] separated = formattedDate.split("-");
         dayString = separated[0];
         monthString = separated[1];
+        /*
         if (monthString.equals("01")) {
             monthString = "1";
         } else if (monthString.equals("02")) {
@@ -106,12 +109,14 @@ public class Main3Activity extends AppCompatActivity {
         } else if (monthString.equals("09")) {
             monthString = "9";
         }
+        */
         yearString = separated[2];
         dateString = (yearString + monthString + dayString);
         dateInt = Integer.parseInt(dateString);
         System.out.println(dateInt);
         System.out.println("222222222222222222222222222222222222");
         // pay-method here
+
         for (PayLog p : paylog) {
             System.out.println(p.getDate_());
             if (dateInt >= p.getDate_()) {
@@ -126,45 +131,60 @@ public class Main3Activity extends AppCompatActivity {
                     to_account = p.getTo_account();
                     to_name = p.getTo_name();
                     a++;
+
+                    //Pay
+                    date_commit = (dayString + "." + monthString + "." + yearString);
+                    account_event.add(new AccountEvent(1, from_account, date_commit, -(sum), to_account, to_name));
+                    account_event.add(new AccountEvent(2, to_account, date_commit, sum, from_account, userNameSelection));
+
+                    for (Debit_account d_a : debit_accounts) {
+                        if (from_account.equals(d_a.getAccountNumber())) {
+                            d_a.pay(sum);
+                        }
+                    }
+                    for (Credit_account c_a : credit_accounts) {
+                        if (from_account.equals(c_a.getAccountNumber())) {
+                            c_a.pay(sum);
+                        }
+                    }
+                    for (Debit_account d_a : debit_accounts) {
+                        if (d_a.getAccountNumber().equals(to_account)) {
+                            d_a.addMoney(sum);
+                        }
+                    }
+                    for (Credit_account c_a : credit_accounts) {
+                        if (c_a.getAccountNumber().equals(to_account)) {
+                            c_a.addMoney(sum);
+                        }
+                    }
                 }
             }
         }
         if (a > 0) {
-            date_commit = (dayString + "." + monthString + "." + yearString);
-            account_event.add(new AccountEvent(1, from_account, date_commit, -(sum), to_account, to_name));
-            account_event.add(new AccountEvent(2, to_account, date_commit, sum, from_account, userNameSelection));
-
-            for (Debit_account d_a : debit_accounts) {
-                if (from_account.equals(d_a.getAccountNumber())) {
-                    d_a.pay(sum);
+            //Remove event from paylog
+            Iterator<PayLog> iterator = paylog.iterator();
+            while (iterator.hasNext()) {
+                PayLog p = iterator.next();
+                if (p.getDate_() <= date_int) {
+                    if (userIdSelection == p.getIde()) {
+                        iterator.remove();
+                    }
                 }
             }
-            for (Credit_account c_a : credit_accounts) {
-                if (from_account.equals(c_a.getAccountNumber())) {
-                    c_a.pay(sum);
-                }
-            }
-            for (Debit_account d_a : debit_accounts) {
-                if (d_a.getAccountNumber().equals(to_account)) {
-                    d_a.addMoney(sum);
-                }
-            }
-            for (Credit_account c_a : credit_accounts) {
-                if (c_a.getAccountNumber().equals(to_account)) {
-                    c_a.addMoney(sum);
-                }
+            for (PayLog p : paylog) {
+                System.out.println(p.getIde() + " " + p.getDate_() + " " + p.getTo_name());
             }
         }
-    }*/
+    }
     public void loadActivity3(View v){
         String number = editText1.getText().toString();
         if (number.equals(text)) {
-            //execute();
+            execute();
             Intent intent = new Intent(Main3Activity.this, Main4Activity.class);
             startActivity(intent);
         } else if (number != text) {
-            textViewError.setText("Wrong number!, try again");
+            Toast.makeText(getApplicationContext(), "Wrong number! Try again", Toast.LENGTH_SHORT).show();
+
         }
     }
-    //public ArrayList<PayLog> getPaylog() { return paylog; }
 }

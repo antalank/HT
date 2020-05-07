@@ -14,7 +14,6 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 
 import static com.example.ht1.Main2Activity.userIdSelection;
 
@@ -111,11 +110,12 @@ public class AddAccountActivity extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //catching errors
                 try {
                     String S_pay_limit = paylimit.getText().toString();
                     float pay_limit = Float.parseFloat(S_pay_limit);
 
+                    //checking if the account is credit or debit
                     Switch sw;
                     sw = (Switch) findViewById(R.id.switch2);
                     if (sw.isChecked()) {    //is credit account

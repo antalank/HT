@@ -2,6 +2,7 @@ package com.example.ht1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteConstraintException;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -53,6 +54,7 @@ public class AddUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+
                     name_text = findViewById(R.id.editText6);
                     ssn_text = findViewById(R.id.editText7);
                     phone_text = findViewById(R.id.editText8);
@@ -61,12 +63,12 @@ public class AddUserActivity extends AppCompatActivity {
                     password_text = findViewById(R.id.editText11);
 
 
-                    String ssn = ssn_text.toString();
-                    String name = name_text.toString();
-                    String phone = phone_text.toString();
-                    String address = address_text.toString();
-                    String postal = postal_text.toString();
-                    String password = password_text.toString();
+                    String ssn = ssn_text.getText().toString();
+                    String name = name_text.getText().toString();
+                    String phone = phone_text.getText().toString();
+                    String address = address_text.getText().toString();
+                    String postal = postal_text.getText().toString();
+                    String password = password_text.getText().toString();
 
                     //checking if password has numbers, lower cases and upper cases
                     char[] chars = password.toCharArray();
@@ -76,19 +78,20 @@ public class AddUserActivity extends AppCompatActivity {
                     for (char c : chars) {
                         if (Character.isDigit(c)) {
                             num_check++;
-                        } else if (Character.isUpperCase(c)) {
-                            capital_check = 0;
-                        } else if (Character.isLowerCase(c)) {
-                            lower_check = 0;
+                        }
+                        if (Character.isUpperCase(c)) {
+                            capital_check++;
+                        }
+                        if (Character.isLowerCase(c)) {
+                            lower_check++;
                         }
                     }
 
                     //checking if password has special characters
                     Pattern p = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
-                    Matcher m = p.matcher("I am a string");
+                    Matcher m = p.matcher(password);
                     boolean b = m.find();
 
-                    System.out.println(password.length());
                     //checking that the password is made by the rules
                     if (password.length() < 12) {
                         Toast.makeText(getApplicationContext(), "Password is too short", Toast.LENGTH_SHORT).show();
@@ -96,22 +99,26 @@ public class AddUserActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Password must have at least 1 number", Toast.LENGTH_SHORT).show();
                     } else if (capital_check < 1) {
                         Toast.makeText(getApplicationContext(), "Password must have at least 1 capital letter", Toast.LENGTH_SHORT).show();
-                    } else if (num_check < 1) {
-                        Toast.makeText(getApplicationContext(), "Password must have at least 1 number", Toast.LENGTH_SHORT).show();
+                    } else if (lower_check < 1) {
+                        Toast.makeText(getApplicationContext(), "Password must have at least 1 lower letter", Toast.LENGTH_SHORT).show();
                     } else if (b == false) {
                         Toast.makeText(getApplicationContext(), "Password must have at least 1 special character", Toast.LENGTH_SHORT).show();
                     } else {
                         DB_Customer dbAccess = DB_Customer.getInstance(getApplicationContext());
                         dbAccess.open();
                         dbAccess.addCustomer(user_id, ssn, name, phone, address, password, postal, bic);
-
                         dbAccess.close();
+                        Toast.makeText(getApplicationContext(), "New account created", Toast.LENGTH_SHORT).show();
                     }
+
+                    }catch (SQLiteConstraintException null_sql){
+                    System.out.println("Menee sqllään");
+                    Toast.makeText(getApplicationContext(), "Write all information, please", Toast.LENGTH_SHORT).show();
                     } catch(NullPointerException null_e){
                         Toast.makeText(getApplicationContext(), "Write all information, please", Toast.LENGTH_SHORT).show();
-                    } catch(NumberFormatException null_e){
-                        Toast.makeText(getApplicationContext(), "Write all information, please", Toast.LENGTH_SHORT).show();
-                    }
+                    } catch(NumberFormatException null_e) {
+                    Toast.makeText(getApplicationContext(), "Write all information, please", Toast.LENGTH_SHORT).show();
+                }
             }
 
         });

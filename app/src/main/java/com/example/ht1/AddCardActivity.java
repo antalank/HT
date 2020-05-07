@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import static com.example.ht1.Main2Activity.userIdSelection;
 
 import java.util.ArrayList;
@@ -125,39 +127,55 @@ public class AddCardActivity extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String S_use_limit = use.getText().toString();
-                float use_limit = Float.parseFloat(S_use_limit);
-                String S_draw_limit = draw.getText().toString();
-                float draw_limit = Float.parseFloat(S_draw_limit);
 
-                String area = area_spinner.getSelectedItem().toString();
-                if (area.equals("Select area")) {
-                    System.out.println("The header of spinner");
-                    // TODO joku ilmoitus että valitse area ensin? vaiko turha
-                } else {
-                    Switch sw;
-                    sw = (Switch) findViewById(R.id.switch2);
-                    if (sw.isChecked()) {    //is credit card
-                        for (int i = 0; i < credit_accounts.size(); i++) {
-                            if (userId == credit_accounts.get(i).getUserID()) {
-                                credit_cards.add(new Credit_card(credit_accounts.get(i).getAccountNumber(), credit_accounts.get(i).getBalance(), credit_accounts.get(i).getUserID(),
-                                        credit_accounts.get(i).getOpenDate(), credit_accounts.get(i).getPayLim(), credit_accounts.get(i).getCredit(),
-                                        use_limit, draw_limit, area, card_num));
-                                System.out.println("Lisäsi kortin");
+
+                //Making sure that the user has written the limits
+                try {
+                    //Making sure that the user has selected and account
+                    try {
+                        String account = spinner.getSelectedItem().toString();
+                        String S_use_limit = use.getText().toString();
+                        float use_limit = Float.parseFloat(S_use_limit);
+                        String S_draw_limit = draw.getText().toString();
+                        float draw_limit = Float.parseFloat(S_draw_limit);
+
+                        String area = area_spinner.getSelectedItem().toString();
+                        if (area.equals("Select area")) {
+                            Toast.makeText(getApplicationContext(), "Select area first", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Switch sw;
+                            sw = (Switch) findViewById(R.id.switch2);
+
+                            if (sw.isChecked()) {    //is credit card
+                                for (int i = 0; i < credit_accounts.size(); i++) {
+                                    if (account.equals(credit_accounts.get(i).getAccountNumber())) {
+                                        credit_cards.add(new Credit_card(credit_accounts.get(i).getAccountNumber(), credit_accounts.get(i).getBalance(), credit_accounts.get(i).getUserID(),
+                                                credit_accounts.get(i).getOpenDate(), credit_accounts.get(i).getPayLim(), credit_accounts.get(i).getCredit(),
+                                                use_limit, draw_limit, area, card_num));
+                                        Toast.makeText(getApplicationContext(), "New card created", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                            } else {    //is debit card
+                                for (int i = 0; i < debit_accounts.size(); i++) {
+                                    if (account.equals(debit_accounts.get(i).getAccountNumber())) {
+                                        debit_cards.add(new Debit_card(debit_accounts.get(i).getAccountNumber(), debit_accounts.get(i).getBalance(), debit_accounts.get(i).getUserID(),
+                                                debit_accounts.get(i).getOpenDate(), debit_accounts.get(i).getPayLim(),
+                                                use_limit, draw_limit, area, card_num));
+                                        Toast.makeText(getApplicationContext(), "New card created", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
                             }
                         }
-                    } else {    //is debit card
-                        for (int i = 0; i < debit_accounts.size(); i++) {
-                            if (userId == debit_accounts.get(i).getUserID()) {
-                                debit_cards.add(new Debit_card(credit_accounts.get(i).getAccountNumber(), credit_accounts.get(i).getBalance(), credit_accounts.get(i).getUserID(),
-                                        credit_accounts.get(i).getOpenDate(), credit_accounts.get(i).getPayLim(),
-                                        use_limit, draw_limit, area, card_num));
-                            }
-                        }
+                    } catch (NullPointerException null_e) {
+                        Toast.makeText(getApplicationContext(), "Select account first", Toast.LENGTH_SHORT).show();
                     }
-                }
-
-    }
+                }catch (NullPointerException null_e) {
+                    Toast.makeText(getApplicationContext(), "Set all limits first", Toast.LENGTH_SHORT).show();
+                }catch (NumberFormatException numb_e) {
+                Toast.makeText(getApplicationContext(), "Set all limits first", Toast.LENGTH_SHORT).show();
+            }
+        }
 
     });
     }

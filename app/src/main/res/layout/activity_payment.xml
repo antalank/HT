@@ -124,7 +124,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="188dp"
         android:layout_marginBottom="150dp"
-        android:onClick="pay"
         android:text="Pay" />
 
     <TextView
@@ -186,15 +185,15 @@
     <Button
         android:id="@+id/button13"
         android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="99dp"
-        android:layout_marginTop="659dp"
-        android:layout_marginEnd="112dp"
-        android:layout_marginBottom="24dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="668dp"
+        android:layout_marginEnd="110dp"
         android:onClick="upComingPayments"
         android:text="Upcoming payments" />
+
 </RelativeLayout>

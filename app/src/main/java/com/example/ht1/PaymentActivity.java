@@ -252,7 +252,45 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
                     for (i = 0; i < freq_Int; i++) {
                         String yDate = Integer.toString(yearInt);
                         String mDate = Integer.toString(monthInt + 1);
+                        if (mDate.equals("1")) {
+                            mDate = "01";
+                        } else if (mDate.equals("2")) {
+                            mDate = "02";
+                        } else if (mDate.equals("3")) {
+                            mDate = "03";
+                        } else if (mDate.equals("4")) {
+                            mDate = "04";
+                        } else if (mDate.equals("5")) {
+                            mDate = "05";
+                        } else if (mDate.equals("6")) {
+                            mDate = "06";
+                        } else if (mDate.equals("7")) {
+                            mDate = "07";
+                        } else if (mDate.equals("8")) {
+                            mDate = "08";
+                        } else if (mDate.equals("9")) {
+                            mDate = "09";
+                        }
                         String dDate = Integer.toString(dayInt);
+                        if (dDate.equals("1")) {
+                            dDate = "01";
+                        } else if (dDate.equals("2")) {
+                            dDate = "02";
+                        } else if (dDate.equals("3")) {
+                            dDate = "03";
+                        } else if (dDate.equals("4")) {
+                            dDate = "04";
+                        } else if (dDate.equals("5")) {
+                            dDate = "05";
+                        } else if (dDate.equals("6")) {
+                            dDate = "06";
+                        } else if (dDate.equals("7")) {
+                            dDate = "07";
+                        } else if (dDate.equals("8")) {
+                            dDate = "08";
+                        } else if (dDate.equals("9")) {
+                            dDate = "09";
+                        }
                         date_Freq_String = yDate + mDate + dDate;
                         dateInt = Integer.parseInt(date_Freq_String);
                         if ((monthInt + 1) >= 13) {
@@ -324,7 +362,7 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
                 //Adding event list
 
                 paylog.add(new PayLog(userIdSelection, date_, sum, account, userNameSelection, account_num, name));
-                textViewPay.setText("Payment set to due date");
+                Toast.makeText(getApplicationContext(), "Payment set to due date", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -336,9 +374,10 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
         freq_Int = Integer.parseInt(freq_String);
 
         if (freq_Int <= 0) {
-            textViewPay.setText("Not possible option.");
+            Toast.makeText(getApplicationContext(), "Not possible option.", Toast.LENGTH_SHORT).show();
         } else if (freq_Int > 12) {
-            textViewPay.setText("Only possible to make 1-12 automatic account payments.");
+            Toast.makeText(getApplicationContext(), "Only possible to make 1-12 automatic account payments.", Toast.LENGTH_SHORT).show();
+
         } else if (freq_Int < 13 && freq_Int > 0) {
             payNormal();
             Date c = Calendar.getInstance().getTime();
@@ -380,7 +419,45 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
             for (i = 0; i < freq_Int; i++) {
                 String yDate = Integer.toString(yearIntF);
                 String mDate = Integer.toString(monthIntF);
+                if (mDate.equals("1")) {
+                    mDate = "01";
+                } else if (mDate.equals("2")) {
+                    mDate = "02";
+                } else if (mDate.equals("3")) {
+                    mDate = "03";
+                } else if (mDate.equals("4")) {
+                    mDate = "04";
+                } else if (mDate.equals("5")) {
+                    mDate = "05";
+                } else if (mDate.equals("6")) {
+                    mDate = "06";
+                } else if (mDate.equals("7")) {
+                    mDate = "07";
+                } else if (mDate.equals("8")) {
+                    mDate = "08";
+                } else if (mDate.equals("9")) {
+                    mDate = "09";
+                }
                 String dDate = Integer.toString(dayIntF);
+                if (dDate.equals("1")) {
+                    dDate = "01";
+                } else if (dDate.equals("2")) {
+                    dDate = "02";
+                } else if (dDate.equals("3")) {
+                    dDate = "03";
+                } else if (dDate.equals("4")) {
+                    dDate = "04";
+                } else if (dDate.equals("5")) {
+                    dDate = "05";
+                } else if (dDate.equals("6")) {
+                    dDate = "06";
+                } else if (dDate.equals("7")) {
+                    dDate = "07";
+                } else if (dDate.equals("8")) {
+                    dDate = "08";
+                } else if (dDate.equals("9")) {
+                    dDate = "09";
+                }
                 date_Freq_String = yDate + mDate + dDate;
                 dateInt = Integer.parseInt(date_Freq_String);
                 if ((monthIntF + 1) >= 13) {
@@ -394,7 +471,8 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
                     monthIntF++;
                     System.out.println("DATE:::::::::::::::::::::::::::: " + dateInt);
                 }
-            } textViewPay.setText("Payment succesfull & set to due date");
+            }
+            Toast.makeText(getApplicationContext(), "Payment succesfull & set to due date", Toast.LENGTH_SHORT).show();
         }
     }
     public void payNormal() {
@@ -464,7 +542,8 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
                 //Adding event list
                 account_event.add(new AccountEvent(id_orginal + 1, account, time_date, -(sum), account_num, name));
                 account_event.add(new AccountEvent(id_orginal + 2, account_num, time_date, sum, account, userNameSelection));
-                textViewPay.setText("Payment succesfull");
+                Toast.makeText(getApplicationContext(), "Payment succesfull", Toast.LENGTH_SHORT).show();
+
             }
         }
     }
@@ -486,7 +565,45 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
         dayInt = dayOfMonth;
         year_ = Integer.toString(year);
         month_ = Integer.toString((month + 1));
+        if (month_.equals("1")) {
+            month_ = "01";
+        } else if (month_.equals("2")) {
+            month_ = "02";
+        } else if (month_.equals("3")) {
+            month_ = "03";
+        } else if (month_.equals("4")) {
+            month_ = "04";
+        } else if (month_.equals("5")) {
+            month_ = "05";
+        } else if (month_.equals("6")) {
+            month_ = "06";
+        } else if (month_.equals("7")) {
+            month_ = "07";
+        } else if (month_.equals("8")) {
+            month_ = "08";
+        } else if (month_.equals("9")) {
+            month_ = "09";
+        }
         day_ = Integer.toString(dayOfMonth);
+        if (day_.equals("1")) {
+            day_ = "01";
+        } else if (day_.equals("2")) {
+            day_ = "02";
+        } else if (day_.equals("3")) {
+            day_ = "03";
+        } else if (day_.equals("4")) {
+            day_ = "04";
+        } else if (day_.equals("5")) {
+            day_ = "05";
+        } else if (day_.equals("6")) {
+            day_ = "06";
+        } else if (day_.equals("7")) {
+            day_ = "07";
+        } else if (day_.equals("8")) {
+            day_ = "08";
+        } else if (day_.equals("9")) {
+            day_ = "09";
+        }
         date_selection = year_ + month_ + day_;
         date_ = Integer.parseInt(date_selection);
         textViewPay.setText(year + ", " + (month + 1) + ", " + dayOfMonth);
