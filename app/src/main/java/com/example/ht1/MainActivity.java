@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         spinner.setOnItemSelectedListener(this);
 
         instance = this;
-        
+
     }
     public static MainActivity getInstance() {
         return instance;
