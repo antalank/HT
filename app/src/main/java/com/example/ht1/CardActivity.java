@@ -119,9 +119,15 @@ public class CardActivity extends BaseActivity {
                                 //deleting the card from all lists
                                 for (int i = 0; i < credit_cards.size(); i++) {
                                     if (card == credit_cards.get(i).getCardNum()) {
+                                        String removed_num = credit_cards.get(i).getCardNum();
                                         credit_cards.remove(i);
-                                        credit_cards_list.remove(i+1);
-                                        Toast.makeText(getApplicationContext(), "Card has been amortised", Toast.LENGTH_SHORT).show();
+                                        for (int a = 0; a < credit_cards_list.size(); a++) {
+                                            if(credit_cards_list.get(a).equals(removed_num)){
+                                                credit_cards_list.remove(a);
+                                                Toast.makeText(getApplicationContext(), "Card has been amortised", Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -142,12 +148,18 @@ public class CardActivity extends BaseActivity {
                                 //deleting the card from all lists
                                 for (int i = 0; i < debit_cards.size(); i++) {
                                     if (card == debit_cards.get(i).getCardNum()) {
+                                        String removed_num = debit_cards.get(i).getCardNum();
                                         debit_cards.remove(i);
-                                        debit_cards_list.remove(i+1);
-                                        Toast.makeText(getApplicationContext(), "Card has been amortised", Toast.LENGTH_SHORT).show();
+                                        for (int a = 0; a < debit_cards_list.size(); a++) {
+                                            if(debit_cards_list.get(a).equals(removed_num)){
+                                                debit_cards_list.remove(a);
+                                                Toast.makeText(getApplicationContext(), "Card has been amortised", Toast.LENGTH_SHORT).show();
 
+                                            }
+                                        }
                                     }
                                 }
+
                             }
                         } catch (NullPointerException null_e) {
                             Toast.makeText(getApplicationContext(), "Select card first", Toast.LENGTH_SHORT).show();
