@@ -125,7 +125,6 @@ public class UserInfoActivity extends BaseActivity {
         int id = userIdSelection;
         //customers =  Main2Activity.getInstance().getCustomerlist();
 
-        try {
         currentString = newAddress.getText().toString();
         String[] separated = currentString.split(",");
         String r = separated[0];
@@ -151,11 +150,6 @@ public class UserInfoActivity extends BaseActivity {
         button2.setVisibility(View.INVISIBLE);
 
         newAddress.setText(null);
-        }catch (NullPointerException null_e){
-            Toast.makeText(getApplicationContext(), "Write name first!", Toast.LENGTH_SHORT).show();
-        }catch (IllegalStateException illegal_e){
-            Toast.makeText(getApplicationContext(), "Write name first!", Toast.LENGTH_SHORT).show();
-        }
     }
     public void saveNumber(View v){
         String s;

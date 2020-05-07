@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +50,6 @@ public class AccountSettingsActivity extends AppCompatActivity implements Adapte
         textViewHeader_Settings = (TextView) findViewById(R.id.textViewHeader_Settings);
         textViewPaylimNote = (TextView) findViewById(R.id.textViewPaylimNote);
         textViewCreditNote = (TextView) findViewById(R.id.textViewCreditNote);
-        textViewDown = (TextView) findViewById(R.id.textViewDown);
         textViewSelect = (TextView) findViewById(R.id.textViewSelect);
 
         editTextPayLimit = (EditText) findViewById(R.id.editTextPayLimit);
@@ -104,13 +104,14 @@ public class AccountSettingsActivity extends AppCompatActivity implements Adapte
         for (Debit_account d_a : debit_accounts) {
             if (account.equals(d_a.getAccountNumber())) {
                 d_a.setPayLim(paylimit);
-                textViewDown.setText("Paylimit set to " + paylimit);
+                Toast.makeText(getApplicationContext(), "Paylimit set to " + paylimit, Toast.LENGTH_SHORT).show();
+
             }
         }
         for (Credit_account c_a : credit_accounts) {
             if (account.equals(c_a.getAccountNumber())) {
                 c_a.setPayLim(paylimit);
-                textViewDown.setText("Paylimit set to " + paylimit);
+                Toast.makeText(getApplicationContext(), "Paylimit set to " + paylimit, Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -131,12 +132,12 @@ public class AccountSettingsActivity extends AppCompatActivity implements Adapte
         for (Credit_account c_a : credit_accounts) {
             if (account.equals(c_a.getAccountNumber())) {
                 c_a.setCredit(creditlimit);
-                textViewDown.setText("Creditlimit set to " + creditlimit);
+                Toast.makeText(getApplicationContext(), "Credit limit set to " + creditlimit, Toast.LENGTH_SHORT).show();
                 i++;
             }
         }
         if (i == 0) {
-            textViewDown.setText("Can't change credit limit");
+            Toast.makeText(getApplicationContext(), "Can't change credit limit", Toast.LENGTH_SHORT).show();
         }
     }
 

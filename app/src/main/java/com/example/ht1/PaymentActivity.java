@@ -362,7 +362,7 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
                 //Adding event list
 
                 paylog.add(new PayLog(userIdSelection, date_, sum, account, userNameSelection, account_num, name));
-                textViewPay.setText("Payment set to due date");
+                Toast.makeText(getApplicationContext(), "Payment set to due date", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -374,9 +374,10 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
         freq_Int = Integer.parseInt(freq_String);
 
         if (freq_Int <= 0) {
-            textViewPay.setText("Not possible option.");
+            Toast.makeText(getApplicationContext(), "Not possible option.", Toast.LENGTH_SHORT).show();
         } else if (freq_Int > 12) {
-            textViewPay.setText("Only possible to make 1-12 automatic account payments.");
+            Toast.makeText(getApplicationContext(), "Only possible to make 1-12 automatic account payments.", Toast.LENGTH_SHORT).show();
+
         } else if (freq_Int < 13 && freq_Int > 0) {
             payNormal();
             Date c = Calendar.getInstance().getTime();
@@ -470,7 +471,8 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
                     monthIntF++;
                     System.out.println("DATE:::::::::::::::::::::::::::: " + dateInt);
                 }
-            } textViewPay.setText("Payment succesfull & set to due date");
+            }
+            Toast.makeText(getApplicationContext(), "Payment succesfull & set to due date", Toast.LENGTH_SHORT).show();
         }
     }
     public void payNormal() {
@@ -540,7 +542,8 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
                 //Adding event list
                 account_event.add(new AccountEvent(id_orginal + 1, account, time_date, -(sum), account_num, name));
                 account_event.add(new AccountEvent(id_orginal + 2, account_num, time_date, sum, account, userNameSelection));
-                textViewPay.setText("Payment succesfull");
+                Toast.makeText(getApplicationContext(), "Payment succesfull", Toast.LENGTH_SHORT).show();
+
             }
         }
     }

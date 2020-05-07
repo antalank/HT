@@ -111,6 +111,7 @@
         android:layout_marginTop="144dp"
         android:layout_marginEnd="14dp"
         android:layout_marginBottom="539dp"
+        android:onClick="writeDatatoFile"
         android:text="Write events to file" />
 
     <Button
