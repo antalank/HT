@@ -203,7 +203,14 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
         System.out.println("############################   " + account);
         account_num = editTextAccountNumber.getText().toString();
         sum_String = editTextSum.getText().toString();
-        sum = Float.parseFloat(sum_String);
+        //Error check
+        try {
+            sum = Float.parseFloat(sum_String);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.print("Done");
+        }
         name = editTextName.getText().toString();
 
         // sum, account_num, time_date
@@ -325,7 +332,14 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
         System.out.println("############################   " + account);
         account_num = editTextAccountNumber.getText().toString();
         sum_String = editTextSum.getText().toString();
-        sum = Float.parseFloat(sum_String);
+        //Error check
+        try {
+            sum = Float.parseFloat(sum_String);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.print("Done");
+        }
         name = editTextName.getText().toString();
         // sum, account_num, time_date
         int lenght = account_num.length();
@@ -501,8 +515,11 @@ public class PaymentActivity extends BaseActivity implements AdapterView.OnItemS
         sum_String = editTextSum.getText().toString();
         try {
             sum = Float.parseFloat(sum_String);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.print("Done");
         }
-        finally { }
         name = editTextName.getText().toString();
 
         // sum, account_num, time_date
