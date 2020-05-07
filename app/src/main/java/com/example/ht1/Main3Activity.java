@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 
 import static com.example.ht1.Main2Activity.userIdSelection;
 import static com.example.ht1.Main2Activity.userNameSelection;
@@ -48,6 +49,7 @@ public class Main3Activity extends AppCompatActivity {
     ArrayList<Credit_account> credit_accounts = new ArrayList<>();
     ArrayList<PayLog> paylog = new ArrayList<>();
     ArrayList<Integer> remove_PayLog = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,14 +110,12 @@ public class Main3Activity extends AppCompatActivity {
             monthString = "9";
         }
         */
-
         yearString = separated[2];
         dateString = (yearString + monthString + dayString);
         dateInt = Integer.parseInt(dateString);
         System.out.println(dateInt);
         System.out.println("222222222222222222222222222222222222");
         // pay-method here
-        int payLogRemove = 0;
 
         for (PayLog p : paylog) {
             System.out.println(p.getDate_());
@@ -131,7 +131,6 @@ public class Main3Activity extends AppCompatActivity {
                     to_account = p.getTo_account();
                     to_name = p.getTo_name();
                     a++;
-
 
                     //Pay
                     date_commit = (dayString + "." + monthString + "." + yearString);
@@ -158,18 +157,19 @@ public class Main3Activity extends AppCompatActivity {
                             c_a.addMoney(sum);
                         }
                     }
-                    remove_PayLog.add(payLogRemove);
                 }
-            } payLogRemove++;
+            }
         }
         if (a > 0) {
             //Remove event from paylog
-            for (Integer i : remove_PayLog) {
-                System.out.println("Remove: " + i);
-                paylog.remove(i);
-            }
-            for (PayLog p : paylog) {
-
+            Iterator<PayLog> iterator = paylog.iterator();
+            while (iterator.hasNext()) {
+                PayLog p = iterator.next();
+                if (p.getDate_() <= date_int) {
+                    if (userIdSelection == p.getIde()) {
+                        iterator.remove();
+                    }
+                }
             }
             for (PayLog p : paylog) {
                 System.out.println(p.getIde() + " " + p.getDate_() + " " + p.getTo_name());

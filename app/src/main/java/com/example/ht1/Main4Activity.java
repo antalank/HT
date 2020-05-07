@@ -353,6 +353,9 @@ public class Main4Activity extends BaseActivity {
         } finally {
             System.out.println("###Wrote: Credit_cards###");
         }
+        //Moving to front page
+        Intent intent = new Intent(Main4Activity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
 
